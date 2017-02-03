@@ -1,0 +1,26 @@
+---
+output:
+  html_document:
+    code_folding: "show"
+---
+
+# Wrangle data {.tabset .tabset-sticky}
+
+```{r message=FALSE, warning=FALSE}
+source("0_helpers.R")
+```
+
+## Wrangle wrangle
+
+```{r}
+data("msleep")
+msleep %>% 
+	mutate(eats = recode(vore, "carni" = "meat", "omni" = "everything", "herbi" = "plants", "insecti" = "insects")) ->
+msleep
+```
+
+## Save data
+```{r}
+saveRDS(msleep, file = "msleep_processed.rds")
+```
+

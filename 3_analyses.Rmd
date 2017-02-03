@@ -1,0 +1,31 @@
+# Wrangle data {.tabset .tabset-sticky}
+
+```{r message=FALSE, warning=FALSE}
+source("0_helpers.R")
+```
+
+## Load data
+
+```{r}
+msleep = readRDS("msleep_processed.rds")
+```
+
+## Basic model
+```{r}
+m1 = lm(sleep_rem ~ sleep_total, data = msleep)
+summary(m1)
+```
+
+## Super-advanced model {.active .tabset .tabset-sticky}
+ 
+### Summary
+```{r}
+m2 = lm(sleep_rem ~ sleep_total + brainwt + bodywt + eats, data = msleep)
+summary(m2)
+```
+
+### Diagnostics
+```{r}
+plot(m2)
+```
+

@@ -1,0 +1,15 @@
+{
+	"title": "Reproducible website stack",
+	"grants": [
+		{
+		}
+		],
+	"upload_type": "software",
+	"creators": [
+		{
+			"affiliation": "Your university",
+			"name": "Your Name"
+		}
+		],
+	"access_right": "open"
+}

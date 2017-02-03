@@ -1,0 +1,41 @@
+---
+pagetitle: "Reproducible website stack"
+bibliography: packrat_bibliography.bibtex
+csl: apa-custom-no-issue.csl
+nocite: |
+    @R @packrat @rmarkdown @knitr @formr @pander @lubridate @stringr @broom @ggplot2 @tidyr @dplyr @devtools @formatR
+---
+
+# Reproducible website stack {.tabset .tabset-sticky}
+
+```{r message=FALSE, warning=FALSE}
+source("0_helpers.R")
+```
+
+We did this cool project.
+
+We used these [helper functions](0_helpers.html).
+
+1. First we [wrangled the data](1_wrangle_data.html).
+2. Then we looked at some [descriptives](2_descriptives.html).
+3. Then we [analysed](3_analyses.html) it.
+
+## Authors & Acknowledgements {.tabset .tabset-sticky}
+
+### Authors
+You!
+
+This supplementary website has been archived on Zenodo.org [![DOI](https://zenodo.org/badge/xxx)](https://zenodo.org/xxx).
+
+### Acknowledgements {.active}
+
+
+#### Package bibliography {.tabset .tabset-sticky}
+
+##### Session info (with package versions)
+```{r}
+spin_R_files_to_site_html()
+sessionInfo()
+```
+
+##### References {.active}

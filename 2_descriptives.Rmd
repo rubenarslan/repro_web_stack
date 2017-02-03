@@ -1,0 +1,28 @@
+# Wrangle data {.tabset .tabset-sticky}
+
+```{r message=FALSE, warning=FALSE}
+source("0_helpers.R")
+```
+
+## Load data
+
+```{r}
+msleep = readRDS("msleep_processed.rds")
+```
+
+## Descriptives {.active}
+```{r warning=FALSE}
+msleep %>% 
+	select(sleep_total, sleep_rem) %>% 
+	summarise_all_vars()
+```
+
+## Distributions
+
+```{r}
+qplot(eats, data = msleep)
+qplot(sleep_total, data = msleep, binwidth = 0.5)
+qplot(sleep_rem, data = msleep, binwidth = 0.5)
+qplot(sleep_total, sleep_rem, data = msleep)
+```
+

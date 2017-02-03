@@ -1,0 +1,42 @@
+
+```{r }
+library(rmarkdown) # generate the site
+library(knitr) # set options for chunks
+library(formr) # my formr utility package to generate e.g. the bibliography
+library(pander) # schoen formatierte tabellen
+library(lubridate) # tidyverse date times
+library(stringr) # tidyverse strings
+library(broom) # extractor functions for models
+library(ggplot2) # grammar of graphics plots
+library(tidyr) # daten von lang nach breit und zurueck
+library(dplyr) # tidyverse-style data wrangling. has a lot of naming conflicts, so always load last
+
+spin_R_files_to_site_html = function() {
+	library(knitr)
+	all_Rs = list.files(pattern = "\\.R$")
+	just_document = c()
+	for (i in seq_along(all_Rs)) {
+		Rmd_file = paste0(all_Rs[i], "md")
+		if (!file.exists(Rmd_file)) {
+			next_document = length(just_document) + 1
+			just_document[i] = spin(all_Rs[i], knit = FALSE, envir = new.env(), format = "Rmd")
+		}
+	}
+	opts_chunk$set(eval = FALSE, cache = FALSE)
+	for (i in seq_along(just_document)) {
+		rmarkdown::render_site(just_document[i], quiet = TRUE)
+	}
+	unlink(just_document)
+	opts_chunk$set(eval = TRUE, cache = TRUE)
+}
+
+# use pander to pretty-print objects (if possible)
+opts_chunk$set(render = pander_handler)
+
+# some packages may be needed without being loaded
+fool_packrat = function() {
+	library(devtools) # needed to install formr package
+	library(formatR) # needed to actually run rmarkdown in RStudio, but for some reason not in its dependencies
+}
+```
+
