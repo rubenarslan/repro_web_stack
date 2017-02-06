@@ -16,12 +16,17 @@ packrat::disable() # because packrat is a bit immature, it's probably easier to 
 
 ```bash
 git checkout --orphan gh-pages
+git reset
+touch index.html
+git add index.html
+git commit -m "start gh-pages"
 mkdir _site
 cp -r .git _site/.git
-git checkout master
+git checkout master -f
 cd _site
 git branch -D master
 cd ../
+git branch -D gh-pages
 ```
 
 Here's a few files you might want to edit:
