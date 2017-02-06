@@ -100,3 +100,4 @@ panderOptions("table.split.table", Inf)
 regression_summary = function(model, indent = "##") {
 	formr::asis_knit_child("_regression_summary.Rmd")
 }
+
