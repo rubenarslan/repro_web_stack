@@ -34,6 +34,9 @@ This supplementary website has been archived on Zenodo.org [![DOI](https://zenod
 
 ##### Session info (with package versions)
 ```{r}
+# Make packrat bibliography
+packrat_bibliography(overwrite_bib = TRUE, silent = TRUE)
+# Turn the .R files into .Rmd files, turn those into .html, remove the .Rmd files
 spin_R_files_to_site_html()
 sessionInfo()
 ```

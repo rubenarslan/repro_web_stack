@@ -59,12 +59,12 @@ spin_R_files_to_site_html = function() {
 			just_document[i] = spin(all_Rs[i], knit = FALSE, envir = new.env(), format = "Rmd")
 		}
 	}
-	opts_chunk$set(eval = FALSE, cache = FALSE)
 	for (i in seq_along(just_document)) {
+		opts_chunk$set(eval = FALSE, cache = FALSE)
 		rmarkdown::render_site(just_document[i], quiet = TRUE)
 	}
-	unlink(just_document)
 	opts_chunk$set(eval = TRUE, cache = TRUE)
+	unlink(just_document)
 }
 
 #' ## Output options
@@ -77,7 +77,5 @@ opts_chunk$set(
 #' don't split tables, scroll horizontallys
 panderOptions("table.split.table", Inf)
 
-
-#' ## Make packrat bibliography
-#' It's inefficient to call this here, but calling it an Rmd file fail due to [this bug](https://github.com/yihui/knitr/issues/332) regressing
-packrat_bibliography(overwrite_bib = TRUE, silent = TRUE)
+#' allow duplicate chunk labels in knitr, useful for knit_child
+options(knitr.duplicate.label = 'allow')
