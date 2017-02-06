@@ -38,3 +38,9 @@ Here's a few files you might want to edit:
 
 4. The name of the `.Rproj` file to something descriptive of your project (correspondingly, the name on Github).
 
+## Releasing to Zenodo
+
+To release to Zenodo via the API, your repository needs to be public. Then, go to [Zenodo](https://zenodo.org/), connect your Github account, flip the switch next to the project name and make a release on Github. It will automatically be uploaded to Zenodo and you will get a DOI, like this [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.268888.svg)](https://doi.org/10.5281/zenodo.268888). I usually release the gh-pages branch, because that's the readable part.
+
+If you don't want your R-code to be public, but only the HTML files, you can either: download a zip of a private release of your gh-pages branch and upload that to Zenodo by hand or you can make a separate, public repository for your HTML files and check this out in your _site directory.
+

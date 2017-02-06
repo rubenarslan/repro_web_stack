@@ -26,7 +26,7 @@ this [knitr component](_regression_summary.html). These are the [.Rprofile setti
 ### Authors
 You!
 
-This supplementary website has been archived on Zenodo.org [![DOI](https://zenodo.org/badge/xxx)](https://zenodo.org/xxx).
+This supplementary website has been archived on Zenodo.org [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.268888.svg)](https://doi.org/10.5281/zenodo.268888).
 
 ### Acknowledgements {.active}
 
