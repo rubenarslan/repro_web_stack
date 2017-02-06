@@ -16,11 +16,9 @@ packrat::disable() # because packrat is a bit immature, it's probably easier to 
 
 ```bash
 git checkout --orphan gh-pages
-git rm . -rf
 mkdir _site
 cp -r .git _site/.git
 git checkout master
-git branch -D gh-pages
 cd _site
 git branch -D master
 cd ../
