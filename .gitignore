@@ -7,3 +7,4 @@ packrat/lib*/
 packrat/src/
 *.rds
 *.rdata
+*_cache/
