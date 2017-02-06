@@ -13,26 +13,12 @@ Here's how to set up:
 1. In R, run
 
 ```r
-packrat::restore()
+packrat::restore() # this should run by default if you open the project in an up-to-date RStudio version
 packrat::disable() # because packrat is a bit immature, it's probably easier to turn it on at the end, when you archive your project, but it may also make sense to put up with the immaturities if you're working on a lot of projects in parallel.
 ```
 
-2. To check out the `gh-pages` in the `_site` subdirectory, run the following in the command line.
-
-```bash
-git checkout --orphan gh-pages
-git reset
-touch index.html
-git add index.html
-git commit -m "start gh-pages"
-mkdir _site
-cp -r .git _site/.git
-git checkout master -f
-cd _site
-git branch -D master
-cd ../
-git branch -D gh-pages
-```
+2. The best way I've found to manage the HTML-files, is to keep them in a sub-directory (called _site) by default and to checkout the gh-pages branch for your repository in that directory as a submodule. I hope I set it up correctly, so this works out of the box, when you fork the repository, let me know if not. I've found SourceTree handles this in a quite user-friendly manner, RStudio not yet.
+RStudio says you can also use a subdirectory called "docs/" in the master branch, but that doesn't appear to work if you're a regular Github user.
 
 ## Configuration
 
