@@ -12,13 +12,18 @@ packrat::restore()
 packrat::disable() # because packrat is a bit immature, it's probably easier to turn it on at the end, when you archive your project, but it may also make sense to put up with the immaturities if you're working on a lot of projects in parallel.
 ```
 
-2. 
+2. Check out the `gh-pages` in the `_site` subdirectory.
 
 ```bash
 git checkout --orphan gh-pages
-git commit -m "initial gh-pages commit"
-git push origin gh-pages
-cp ./ _site/
+git rm . -rf
+mkdir _site
+cp -r .git _site/.git
+git checkout master
+git branch -D gh-pages
+cd _site
+git branch -D master
+cd ../
 ```
 
 Here's a few files you might want to edit:
