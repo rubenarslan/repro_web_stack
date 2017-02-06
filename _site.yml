@@ -9,7 +9,7 @@ navbar:
     - text: "Descriptives"
       href: 2_descriptives.html
     - text: "Analyses"
-    - href: 3_analyses.html
+      href: 3_analyses.html
 output:
   html_document:
     self_contained: false
