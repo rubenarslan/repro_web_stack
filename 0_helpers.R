@@ -52,7 +52,7 @@ fool_packrat = function() {
 #' This function turns all R files (that don't have an Rmd file of the same name and that don't start with an underscore _) into HTML pages
 spin_R_files_to_site_html = function() {
 	library(knitr)
-	all_Rs = list.files(pattern = "^[^_].+\\.R$")
+	all_Rs = c(list.files(pattern = "^[^_].+\\.R$"), ".Rprofile")
 	component_Rmds = list.files(pattern = "^_.+\\.Rmd$")
 	temporary_Rmds = c()
 	for (i in seq_along(all_Rs)) {
@@ -80,10 +80,6 @@ opts_chunk$set(
 
 #' don't split tables, scroll horizontallys
 panderOptions("table.split.table", Inf)
-
-#' allow duplicate chunk labels in knitr, useful for knit_child
-options(knitr.duplicate.label = 'allow')
-
 
 regression_summary = function(model, indent = "##") {
 	formr::asis_knit_child("_regression_summary.Rmd")

@@ -15,7 +15,7 @@ source("0_helpers.R")
 We did this cool project.
 
 We used these [helper functions](0_helpers.html) and 
-this [knitr component](_regression_summary.html).
+this [knitr component](_regression_summary.html). These are the [.Rprofile settings](.Rprofile.html)
 
 1. First we [wrangled the data](1_wrangle_data.html).
 2. Then we looked at some [descriptives](2_descriptives.html).
