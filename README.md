@@ -10,14 +10,20 @@ https://rubenarslan.github.io/repro_web_stack
 ## Set up
 Here's how to set up:
 
-1. In R, run
+1. Fork this repository (top right).
+
+2. Clone your fork (Click the green Clone or download button) to a local folder.
+
+3. Open the repro_web_stack.Rproj file in RStudio.
+
+4. In RStudio packrat should start installing packages, if not, consider running
 
 ```r
 packrat::restore() # this should run by default if you open the project in an up-to-date RStudio version
 packrat::disable() # because packrat is a bit immature, it's probably easier to turn it on at the end, when you archive your project, but it may also make sense to put up with the immaturities if you're working on a lot of projects in parallel.
 ```
 
-2. The best way I've found to manage the HTML-files, is to keep them in a sub-directory (called _site) by default and to checkout the gh-pages branch for your repository in that directory as a submodule. I hope I set it up correctly, so this works out of the box, when you fork the repository, let me know if not. I've found SourceTree handles this in a quite user-friendly manner, RStudio not yet.
+5. The best way I've found to manage the HTML-files, is to keep them in a sub-directory (called _site) by default and to checkout the gh-pages branch for your repository in that directory as a submodule. I hope I set it up correctly, so this works out of the box, when you fork the repository, let me know if not. I've found SourceTree handles this in a quite user-friendly manner, RStudio not yet.
 RStudio says you can also use a subdirectory called "docs/" in the master branch, but that doesn't appear to work if you're a regular Github user.
 
 ## Configuration
@@ -29,3 +35,6 @@ Here's a few files you might want to edit:
 2. `_site.yml` here you can set up a few global settings for how your site should look like. [More information](http://rmarkdown.rstudio.com/rmarkdown_websites.html).
 
 3. `0_helpers.R` - here I load a few packages that I tend to always use. I think it makes sense to load a basic set of packages in this helper file and include it everywhere. Load order matters hugely in R (especially when you use dplyr, which has lots of name conflicts with other packages) and it can simplify things for you, when you know the load order. I've also set a few defaults here that make sense to me.
+
+4. The name of the `.Rproj` file to something descriptive of your project (correspondingly, the name on Github).
+
