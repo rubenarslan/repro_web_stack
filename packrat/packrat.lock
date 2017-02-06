@@ -42,6 +42,7 @@ Hash: 7ab41cbe74918de8de87e435ef17e92d
 Package: RcppEigen
 Source: CRAN
 Version: 0.3.2.9.0
+Hash: 3f0a2179e872b4e0eddfb747b289b7be
 Requires: Rcpp
 
 Package: assertthat
@@ -246,7 +247,7 @@ Requires: ggplot2, gridExtra, plyr, psych, reshape2, xtable
 Package: lme4
 Source: CRAN
 Version: 1.1-12
-Hash: 8cc8d16b045d36c3706f9198bd7731ef
+Hash: d306e239f525642f2e0d83433e811bd7
 Requires: MASS, Rcpp, RcppEigen, lattice, minqa, nlme, nloptr
 
 Package: lubridate

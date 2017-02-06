@@ -13,7 +13,7 @@ msleep = readRDS("msleep_processed.rds")
 ## Descriptives {.active}
 ```{r warning=FALSE}
 msleep %>% 
-	select(sleep_total, sleep_rem) %>% 
+	select(sleep_total, sleep_rem, brainwt, bodywt) %>% 
 	summarise_all_vars()
 ```
 
