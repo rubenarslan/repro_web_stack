@@ -15,7 +15,7 @@ source("0_helpers.R")
 ```{r}
 data("msleep")
 msleep %>% 
-	mutate(eats = recode(vore, "carni" = "meat", "omni" = "everything", "herbi" = "plants", "insecti" = "insects")) ->
+	mutate(eats = factor(recode(vore, "carni" = "meat", "omni" = "everything", "herbi" = "plants", "insecti" = "insects"), c("everything","plants", "insects", "meat"))) ->
 msleep
 ```
 

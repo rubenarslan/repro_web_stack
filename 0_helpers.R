@@ -28,6 +28,8 @@ library(lubridate)
 library(stringr)
 #' extractor functions for models
 library(broom)
+#' marginal effects plots for regressions
+library(effects)
 #' grammar of graphics plots
 library(ggplot2)
 #' tidyverse: transform data wide to long
@@ -35,7 +37,7 @@ library(tidyr)
 #' svg graphs
 library(svglite);
 #' tidyverse-style data wrangling. has a lot of naming conflicts, so always load last
-library(dplyr) #
+library(dplyr)
 
 #' some packages may be needed without being loaded
 fool_packrat = function() {
@@ -51,20 +53,22 @@ fool_packrat = function() {
 spin_R_files_to_site_html = function() {
 	library(knitr)
 	all_Rs = list.files(pattern = "^[^_].+\\.R$")
-	just_document = c()
+	component_Rmds = list.files(pattern = "^_.+\\.Rmd$")
+	temporary_Rmds = c()
 	for (i in seq_along(all_Rs)) {
 		Rmd_file = paste0(all_Rs[i], "md")
 		if (!file.exists(Rmd_file)) {
-			next_document = length(just_document) + 1
-			just_document[i] = spin(all_Rs[i], knit = FALSE, envir = new.env(), format = "Rmd")
+			next_document = length(temporary_Rmds) + 1
+			temporary_Rmds[next_document] = spin(all_Rs[i], knit = FALSE, envir = new.env(), format = "Rmd")
 		}
 	}
-	for (i in seq_along(just_document)) {
+	components_and_scripts = c(temporary_Rmds, component_Rmds)
+	for (i in seq_along(components_and_scripts)) {
 		opts_chunk$set(eval = FALSE, cache = FALSE)
-		rmarkdown::render_site(just_document[i], quiet = TRUE)
+		rmarkdown::render_site(components_and_scripts[i], quiet = TRUE)
 	}
 	opts_chunk$set(eval = TRUE, cache = TRUE)
-	unlink(just_document)
+	unlink(temporary_Rmds)
 }
 
 #' ## Output options
@@ -79,3 +83,8 @@ panderOptions("table.split.table", Inf)
 
 #' allow duplicate chunk labels in knitr, useful for knit_child
 options(knitr.duplicate.label = 'allow')
+
+
+regression_summary = function(model, indent = "##") {
+	formr::asis_knit_child("_regression_summary.Rmd")
+}

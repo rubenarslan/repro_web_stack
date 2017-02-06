@@ -1,0 +1,21 @@
+```{r eval=TRUE}
+if (!exists("indent")) {
+	indent = '##' # ugly hack so _regression_summary can be "spun" (variables included via `r ` have to be available)
+}
+```
+
+`r indent`# Summary
+```{r}
+summary(model)
+```
+
+`r indent`# Marginal effect plot
+```{r}
+plot(allEffects(model))
+```
+
+
+`r indent`# Diagnostics
+```{r}
+plot(model)
+```

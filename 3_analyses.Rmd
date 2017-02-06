@@ -10,28 +10,16 @@ source("0_helpers.R")
 msleep = readRDS("msleep_processed.rds")
 ```
 
-## Basic model
+## Basic model {.tabset .tabset-sticky}
+
 ```{r}
 m1 = lm(sleep_rem ~ sleep_total, data = msleep)
-summary(m1)
+regression_summary(m1)
 ```
 
 ## Super-advanced model {.active .tabset .tabset-sticky}
- 
-### Summary
+
 ```{r}
-m2 = lm(sleep_rem ~ sleep_total + brainwt + bodywt + eats, data = msleep)
-summary(m2)
+m2 = lm(sleep_rem ~ sleep_total + log(brainwt) + log(bodywt) + eats, data = msleep)
+regression_summary(m2)
 ```
-
-### Coefficient plot
-```{r}
-coefplot::coefplot(m2)
-```
-
-
-### Diagnostics
-```{r}
-plot(m2)
-```
-

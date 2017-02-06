@@ -39,6 +39,11 @@ Source: CRAN
 Version: 0.12.9
 Hash: 7ab41cbe74918de8de87e435ef17e92d
 
+Package: RcppEigen
+Source: CRAN
+Version: 0.3.2.9.0
+Requires: Rcpp
+
 Package: assertthat
 Source: CRAN
 Version: 0.1
@@ -109,6 +114,12 @@ Version: 0.5.0
 Hash: 884482baf4ab273f2af5e641469f9ea4
 Requires: BH, DBI, R6, Rcpp, assertthat, lazyeval, magrittr, tibble
 
+Package: effects
+Source: CRAN
+Version: 3.1-2
+Hash: b75afc5b3f37acc672eeb16955e5a7a0
+Requires: colorspace, lattice, lme4
+
 Package: evaluate
 Source: CRAN
 Version: 0.10
@@ -127,15 +138,15 @@ Hash: b2a47a2b91737978cf50ba95825a9cd1
 
 Package: formr
 Source: github
-Version: 0.6.1
-Hash: 5eff8b6cf8373cd66b669d3d8e29c405
+Version: 0.6.5
+Hash: 4b4abe6a2a9e6bd36bfe10a754f5d708
 Requires: commonmark, curl, dplyr, ggplot2, haven, httr, jsonlite,
     knitr, likert, lubridate, packrat, pander, pryr, psych, reshape2,
     rmarkdown, scales, stringr, tidyr
 GithubRepo: formr
 GithubUsername: rubenarslan
 GithubRef: master
-GithubSha1: 401075aced8b64e096feb2e42883bf52adc7ff6d
+GithubSha1: fd38fe17e7eae49920c7452c5ce6245c61f7fb38
 
 Package: gdtools
 Source: CRAN
@@ -232,6 +243,12 @@ Version: 1.3.5
 Hash: 935e2750dc32af0fccf9765542937f58
 Requires: ggplot2, gridExtra, plyr, psych, reshape2, xtable
 
+Package: lme4
+Source: CRAN
+Version: 1.1-12
+Hash: 8cc8d16b045d36c3706f9198bd7731ef
+Requires: MASS, Rcpp, RcppEigen, lattice, minqa, nlme, nloptr
+
 Package: lubridate
 Source: CRAN
 Version: 1.6.0
@@ -260,6 +277,12 @@ Source: CRAN
 Version: 0.5
 Hash: 463550cf44fb6f0a2359368f42eebe62
 
+Package: minqa
+Source: CRAN
+Version: 1.2.4
+Hash: c6589c93323b465a07618bae6f6ec7ed
+Requires: Rcpp
+
 Package: mnormt
 Source: CRAN
 Version: 1.5-5
@@ -276,6 +299,11 @@ Source: CRAN
 Version: 3.1-130
 Hash: 37e6b5af14eefb08c1e5163c640d8162
 Requires: lattice
+
+Package: nloptr
+Source: CRAN
+Version: 1.0.4
+Hash: 8053df240a4635aeb54fc68c6de67709
 
 Package: openssl
 Source: CRAN
@@ -375,6 +403,12 @@ Source: CRAN
 Version: 0.6.1
 Hash: 304887c13ceb691ff8bd5560c62b271a
 Requires: Rcpp, dplyr, lazyeval, magrittr, stringi, tibble
+
+Package: useful
+Source: CRAN
+Version: 1.2.1
+Hash: b060174b841cd27fad70f2f9c88c880f
+Requires: dplyr, ggplot2, magrittr, plyr, scales
 
 Package: whisker
 Source: CRAN
