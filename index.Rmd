@@ -33,7 +33,7 @@ This supplementary website has been archived on Zenodo.org [![DOI](https://zenod
 
 #### Package bibliography {.tabset .tabset-sticky}
 
-##### Session info (with package versions)
+##### Session info
 ```{r}
 # Make packrat bibliography
 packrat_bibliography(overwrite_bib = TRUE, silent = TRUE)

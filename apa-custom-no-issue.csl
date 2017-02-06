@@ -170,6 +170,9 @@
         <text variable="title"/>
       </else>
     </choose>
+    <group prefix=" (" suffix=")" delimiter=" ">
+       <text variable="note" font-style="italic"/>
+    </group>
   </macro>
   <macro name="publisher">
     <choose>

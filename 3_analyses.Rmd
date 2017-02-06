@@ -23,3 +23,13 @@ regression_summary(m1)
 m2 = lm(sleep_rem ~ sleep_total + log(brainwt) + log(bodywt) + eats, data = msleep)
 regression_summary(m2)
 ```
+
+## Summary
+
+```{r}
+bind_rows(
+	"Model 1" = glance(m1), 
+	"Model 2" = glance(m2),
+.id = "Model") %>% arrange(AIC) %>% select(Model, adj.r.squared, BIC, deviance, df.residual)
+```
+
