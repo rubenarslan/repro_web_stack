@@ -15,4 +15,7 @@ output:
     self_contained: false
     theme: paper
     code_folding: "hide"
+    df_print: "tibble"
+    code_download: true
+    highlight: "zenburn"
 exclude: ["packrat", "*.rda", "*.pdf", "*.dta", "*.csv", "geo", "item_tables", "*.csl", "*.bibtex"]

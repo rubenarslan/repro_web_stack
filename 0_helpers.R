@@ -1,4 +1,4 @@
-#' # Helper functions used throughout {.tab-content}
+#' # Helper functions used throughout {.tabset .tabset-sticky}
 #' documentation on the functions is interspersed through code comments
 #'
 #' ## set some options
@@ -56,15 +56,28 @@ spin_R_files_to_site_html = function() {
 	component_Rmds = list.files(pattern = "^_.+\\.Rmd$")
 	temporary_Rmds = c()
 	for (i in seq_along(all_Rs)) {
-		Rmd_file = paste0(all_Rs[i], "md")
+		if(all_Rs[i] == ".Rprofile") {
+			Rmd_file = ".Rprofile.Rmd"
+		} else {
+			Rmd_file = paste0(all_Rs[i], "md")
+		}
 		if (!file.exists(Rmd_file)) {
 			next_document = length(temporary_Rmds) + 1
 			temporary_Rmds[next_document] = spin(all_Rs[i], knit = FALSE, envir = new.env(), format = "Rmd")
+			prepended_yaml = paste0(c("---
+output:
+  html_document:
+    code_folding: 'show'
+---
+
+", readLines(temporary_Rmds[next_document])), collapse = "\n")
+			cat(prepended_yaml, file = temporary_Rmds[next_document])
 		}
 	}
 	components_and_scripts = c(temporary_Rmds, component_Rmds)
 	for (i in seq_along(components_and_scripts)) {
 		opts_chunk$set(eval = FALSE, cache = FALSE)
+		# if we call render_site on the .R file directly it adds a header I don't like
 		rmarkdown::render_site(components_and_scripts[i], quiet = TRUE)
 	}
 	opts_chunk$set(eval = TRUE, cache = TRUE)
@@ -78,9 +91,12 @@ opts_chunk$set(
 	dev = "svglite"
 	)
 
-#' don't split tables, scroll horizontallys
+#' don't split tables, scroll horizontally
 panderOptions("table.split.table", Inf)
 
+#' ## Knitr components
+#'
+#' summarise regression using a "knitr component"
 regression_summary = function(model, indent = "##") {
 	formr::asis_knit_child("_regression_summary.Rmd")
 }
