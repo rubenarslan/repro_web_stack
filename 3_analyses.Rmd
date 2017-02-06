@@ -24,6 +24,12 @@ m2 = lm(sleep_rem ~ sleep_total + brainwt + bodywt + eats, data = msleep)
 summary(m2)
 ```
 
+### Coefficient plot
+```{r}
+coefplot::coefplot(m2)
+```
+
+
 ### Diagnostics
 ```{r}
 plot(m2)

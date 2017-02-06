@@ -3,16 +3,21 @@
 This is a stack of tools that have served me well to generate reproducible websites.
 Some defaults were set to make things more seamless and I added some files to show it works. This is a fairly opinionated approach and your mileage may vary.
 
-Here's how to set up everything:
+The website generated from these scripts can be viewed at:  
+https://rubenarslan.github.io/repro_web_stack
 
-1. Run
+
+## Set up
+Here's how to set up:
+
+1. In R, run
 
 ```r
 packrat::restore()
 packrat::disable() # because packrat is a bit immature, it's probably easier to turn it on at the end, when you archive your project, but it may also make sense to put up with the immaturities if you're working on a lot of projects in parallel.
 ```
 
-2. Check out the `gh-pages` in the `_site` subdirectory.
+2. To check out the `gh-pages` in the `_site` subdirectory, run the following in the command line.
 
 ```bash
 git checkout --orphan gh-pages
@@ -28,6 +33,8 @@ git branch -D master
 cd ../
 git branch -D gh-pages
 ```
+
+## Configuration
 
 Here's a few files you might want to edit:
 
