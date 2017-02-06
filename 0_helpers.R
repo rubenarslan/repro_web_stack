@@ -74,6 +74,10 @@ opts_chunk$set(
 	dev = "svglite"
 	)
 
+#' don't split tables, scroll horizontallys
+panderOptions("table.split.table", Inf)
+
+
 #' ## Make packrat bibliography
 #' It's inefficient to call this here, but calling it an Rmd file fail due to [this bug](https://github.com/yihui/knitr/issues/332) regressing
 packrat_bibliography(overwrite_bib = TRUE, silent = TRUE)
