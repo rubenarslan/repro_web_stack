@@ -8,10 +8,12 @@
 options(stringsAsFactors = FALSE)
 #' show four significant digits tops
 options(digits = 4)
-#' tend not to show scientific notation
+#' tend not to show scientific notation, because we're just psychologists
 options(scipen = 7)
 #' make output a bit wider
 options(width = 110)
+#' set a seed to make analyses depending on random number generation reproducible
+set.seed(1710) # if you use your significant other's birthday make sure you stay together for the sake of reproducibility
 
 #' ## Load packages
 #' generate the site
