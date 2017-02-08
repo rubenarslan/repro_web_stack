@@ -23,10 +23,7 @@ Here's how to set up:
 	packrat::disable() # because packrat is a bit immature, it's probably easier to turn it on at the end, when you archive your project, but it may also make sense to put up with the immaturities if you're working on a lot of projects in parallel.
 	```
 
-5. The best way I've found to manage the resulting HTML-files is to keep them in a sub-directory (called _site by default) and to checkout the `gh-pages` branch for your repository in that directory as a submodule. I hope I set it up correctly, so this works out of the box, when you fork the repository, let me know if not. 
-
-6. I've found SourceTree handle Git with submodules in a quite user-friendly manner, RStudio not quite yet.  
-RStudio says you can also use a subdirectory called "docs/" in the master branch, but that doesn't appear to work if you're a regular Github user.
+5. Now try whether you can generate the website by clicking "Knit", then modify the files to suit your project?
 
 ## Configuration
 
@@ -46,3 +43,10 @@ To release to Zenodo via the API, your repository needs to be public. Then, go t
 
 If you don't want your R-code to be public, but only the HTML files, you can either: download a zip of a private release of your gh-pages branch and upload that to Zenodo by hand or you can make a separate, public repository for your HTML files and check this out in your _site directory.
 
+## Notes
+
+### Github branches
+The best way I've found to manage the resulting HTML-files is to keep them in a sub-directory (called _site by default) and to checkout the `gh-pages` branch for your repository in that directory as a submodule. I've set it up so that this the default for this project, so it should work out of the box.
+
+I've found SourceTree handle Git with submodules in a quite user-friendly manner, RStudio not quite yet.  
+RStudio says you can also use a subdirectory called "docs/" in the master branch, instead of checking out gh-pages, but that doesn't appear to work if you're a regular Github user.

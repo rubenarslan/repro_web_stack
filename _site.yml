@@ -10,6 +10,10 @@ navbar:
       href: 2_descriptives.html
     - text: "Analyses"
       href: 3_analyses.html
+  right:
+    - text: ""
+      icon: fa-github
+      href: https://github.com/rubenarslan/repro_web_stack
 output:
   html_document:
     self_contained: false
