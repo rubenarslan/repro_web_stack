@@ -139,15 +139,15 @@ Hash: b2a47a2b91737978cf50ba95825a9cd1
 
 Package: formr
 Source: github
-Version: 0.6.9
-Hash: e2d7e9691267eae86f507e8e7a5333b4
+Version: 0.6.11
+Hash: d4c78a08a892bd73b86ed512d9f628bc
 Requires: commonmark, curl, dplyr, ggplot2, haven, httr, jsonlite,
     knitr, likert, lubridate, packrat, pander, pryr, psych, reshape2,
     rmarkdown, scales, stringr, tidyr
 GithubRepo: formr
 GithubUsername: rubenarslan
 GithubRef: master
-GithubSha1: b5d9d1ea72e8046a277d6b4d6e1a64985936a54d
+GithubSha1: e9ed94a5a019824a4b5a36b78545e159fde6022e
 
 Package: gdtools
 Source: CRAN
