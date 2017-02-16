@@ -67,8 +67,8 @@ Hash: 67d0775189fd0041d95abca618c5c07e
 
 Package: broom
 Source: CRAN
-Version: 0.4.1
-Hash: c90145ada2eac0128487c21ab2ac9c78
+Version: 0.4.2
+Hash: 7ebcffa46afb467e3f3c5687946f6e1a
 Requires: dplyr, nlme, plyr, psych, reshape2, stringr, tidyr
 
 Package: caTools
@@ -297,8 +297,8 @@ Requires: colorspace
 
 Package: nlme
 Source: CRAN
-Version: 3.1-130
-Hash: 37e6b5af14eefb08c1e5163c640d8162
+Version: 3.1-131
+Hash: 7f5580f9c481d6921298f224c391b308
 Requires: lattice
 
 Package: nloptr
