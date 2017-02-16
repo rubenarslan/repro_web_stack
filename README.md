@@ -6,24 +6,29 @@ Some defaults were set to make things more seamless and I added some files to sh
 The website generated from these scripts can be viewed at:  
 https://rubenarslan.github.io/repro_web_stack
 
+## Requirements to get started
+
+- [RStudio](https://www.rstudio.com/products/rstudio/download/) 1.*
+- [R](https://cran.rstudio.com/) 3.*
+- [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) (should already be installed on Mac OS Mavericks and above)
 
 ## Set up
 Here's how to set up:
 
-1. Fork this repository (top right).
+1. (Optional, if you have a Github account already or are willing to create one). Fork this repository (top right).
 
-2. Clone your fork (Click the green Clone or download button) to a local folder.
+2. Open RStudio. In the top right menu "project menu", click new project.
 
-3. Open the repro_web_stack.Rproj file in RStudio.
+3. In the dialog box that appears, click "Version Control". Copy-paste the URL from your repository (it will be `https://github.com/rubenarslan/repro_web_stack` except with your username, if you forked it). Create the project (you can pick a different name if you'd like).
 
-4. In RStudio packrat should start installing packages, if not, consider running
+3. In RStudio packrat should start installing packages, if not, consider running
 
 	```r
 	packrat::restore() # this should run by default if you open the project in an up-to-date RStudio version
-	packrat::disable() # because packrat is a bit immature, it's probably easier to turn it on at the end, when you archive your project, but it may also make sense to put up with the immaturities if you're working on a lot of projects in parallel.
+	packrat::disable() # because packrat is a bit immature, it's probably easier to only turn it on at the end, when you archive your project. It may make sense to put up with the immaturities if you're working on a lot of projects in parallel.
 	```
 
-5. Now try whether you can generate the website by clicking "Knit", then modify the files to suit your project?
+5. Now try whether you can generate the website by clicking "Knit" in the file `1_wrangle_data.Rmd`, then try the other files, then modify them to suit your project.
 
 ## Configuration
 
@@ -48,5 +53,5 @@ If you don't want your R-code to be public, but only the HTML files, you can eit
 ### Github branches
 The best way I've found to manage the resulting HTML-files is to keep them in a sub-directory (called _site by default) and to checkout the `gh-pages` branch for your repository in that directory as a submodule. I've set it up so that this the default for this project, so it should work out of the box.
 
-I've found SourceTree handle Git with submodules in a quite user-friendly manner, RStudio not quite yet.  
+I've found SourceTree handles Git with submodules in a quite user-friendly manner, RStudio not quite yet.  
 RStudio says you can also use a subdirectory called "docs/" in the master branch, instead of checking out gh-pages, but that doesn't appear to work if you're a regular Github user.
