@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+
+<title>Reproducible website stack</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/paper.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/navigation-1.1/codefolding.js"></script>
+<script src="site_libs/navigation-1.1/FileSaver.min.js"></script>
+<script src="site_libs/navigation-1.1/sourceembed.js"></script>
+<link href="site_libs/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet" />
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; background-color: #303030; color: #cccccc; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; }
+td.sourceCode { padding-left: 5px; }
+pre, code { color: #cccccc; background-color: #303030; }
+code > span.kw { color: #f0dfaf; } /* Keyword */
+code > span.dt { color: #dfdfbf; } /* DataType */
+code > span.dv { color: #dcdccc; } /* DecVal */
+code > span.bn { color: #dca3a3; } /* BaseN */
+code > span.fl { color: #c0bed1; } /* Float */
+code > span.ch { color: #dca3a3; } /* Char */
+code > span.st { color: #cc9393; } /* String */
+code > span.co { color: #7f9f7f; } /* Comment */
+code > span.ot { color: #efef8f; } /* Other */
+code > span.al { color: #ffcfaf; } /* Alert */
+code > span.fu { color: #efef8f; } /* Function */
+code > span.er { color: #c3bf9f; } /* Error */
+code > span.wa { color: #7f9f7f; font-weight: bold; } /* Warning */
+code > span.cn { color: #dca3a3; font-weight: bold; } /* Constant */
+code > span.sc { color: #dca3a3; } /* SpecialChar */
+code > span.vs { color: #cc9393; } /* VerbatimString */
+code > span.ss { color: #cc9393; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { } /* Variable */
+code > span.cf { color: #f0dfaf; } /* ControlFlow */
+code > span.op { color: #f0efd0; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #ffcfaf; font-weight: bold; } /* Preprocessor */
+code > span.at { } /* Attribute */
+code > span.do { color: #7f9f7f; } /* Documentation */
+code > span.an { color: #7f9f7f; font-weight: bold; } /* Annotation */
+code > span.cv { color: #7f9f7f; font-weight: bold; } /* CommentVar */
+code > span.in { color: #7f9f7f; font-weight: bold; } /* Information */
+div.sourceCode {
+  overflow-x: visible;
+}
+</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+#rmd-source-code {
+  display: none;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 64px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 69px;
+  margin-top: -69px;
+}
+
+.section h2 {
+  padding-top: 69px;
+  margin-top: -69px;
+}
+.section h3 {
+  padding-top: 69px;
+  margin-top: -69px;
+}
+.section h4 {
+  padding-top: 69px;
+  margin-top: -69px;
+}
+.section h5 {
+  padding-top: 69px;
+  margin-top: -69px;
+}
+.section h6 {
+  padding-top: 69px;
+  margin-top: -69px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
+<script>
+$(document).ready(function () {
+  window.initializeSourceEmbed("index.Rmd");
+  window.initializeCodeFolding("hide" === "show");
+});
+</script>
+
+
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Reproducible website stack</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Overview</a>
+</li>
+<li>
+  <a href="1_wrangle_data.html">Data wrangling</a>
+</li>
+<li>
+  <a href="2_descriptives.html">Descriptives</a>
+</li>
+<li>
+  <a href="3_analyses.html">Analyses</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://github.com/rubenarslan/repro_web_stack">
+    <span class="fa fa-github"></span>
+     
+    
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+<div class="btn-group pull-right">
+<button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu" style="min-width: 50px;">
+<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
+<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
+<li role="separator" class="divider"></li>
+<li><a id="rmd-download-source" href="#">Download Rmd</a></li>
+</ul>
+</div>
+
+
+
+
+</div>
+
+
+<div id="reproducible-website-stack" class="section level1 tabset tabset-sticky">
+<h1>Reproducible website stack</h1>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">source</span>(<span class="st">&quot;0_helpers.R&quot;</span>)</code></pre></div>
+<p>We did this cool project.</p>
+<p>We used these <a href="0_helpers.html">helper functions</a> and this <a href="_regression_summary.html">knitr component</a>. These are the <a href=".Rprofile.html">.Rprofile settings</a></p>
+<ol style="list-style-type: decimal">
+<li>First we <a href="1_wrangle_data.html">wrangled the data</a>.</li>
+<li>Then we looked at some <a href="2_descriptives.html">descriptives</a>.</li>
+<li>Then we <a href="3_analyses.html">analysed</a> it.</li>
+</ol>
+<div id="authors-acknowledgements" class="section level2 tabset tabset-sticky">
+<h2>Authors &amp; Acknowledgements</h2>
+<div id="authors" class="section level3">
+<h3>Authors</h3>
+<p>You!</p>
+<p>This supplementary website has been archived on Zenodo.org <a href="https://doi.org/10.5281/zenodo.268888"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.268888.svg" alt="DOI" /></a>.</p>
+</div>
+<div id="acknowledgements" class="section level3 active">
+<h3>Acknowledgements</h3>
+<div id="package-bibliography" class="section level4 tabset tabset-sticky">
+<h4>Package bibliography</h4>
+<div id="session-info" class="section level5">
+<h5>Session info</h5>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Make packrat bibliography</span>
+<span class="kw">packrat_bibliography</span>(<span class="dt">overwrite_bib =</span> <span class="ot">TRUE</span>, <span class="dt">silent =</span> <span class="ot">TRUE</span>)
+<span class="co"># Turn the .R files into .Rmd files, turn those into .html, remove the .Rmd files</span>
+<span class="kw">spin_R_files_to_site_html</span>()
+<span class="kw">sessionInfo</span>()</code></pre></div>
+<p><strong>R version 3.3.2 (2016-10-31)</strong></p>
+<p>**<a href="Platform:**" class="uri">Platform:**</a> x86_64-apple-darwin13.4.0 (64-bit)</p>
+<p><strong>locale:</strong> en_US.UTF-8||en_US.UTF-8||en_US.UTF-8||C||en_US.UTF-8||en_US.UTF-8</p>
+<p><strong>attached base packages:</strong> <em>stats</em>, <em>graphics</em>, <em>grDevices</em>, <em>utils</em>, <em>datasets</em>, <em>methods</em> and <em>base</em></p>
+<p><strong>other attached packages:</strong> <em>dplyr(v.0.5.0)</em>, <em>svglite(v.1.2.0)</em>, <em>tidyr(v.0.6.2)</em>, <em>ggplot2(v.2.2.1)</em>, <em>effects(v.3.1-2)</em>, <em>broom(v.0.4.2)</em>, <em>stringr(v.1.2.0)</em>, <em>lubridate(v.1.6.0)</em>, <em>pander(v.0.6.0)</em>, <em>formr(v.0.6.11)</em>, <em>knitr(v.1.15.1)</em> and <em>rmarkdown(v.1.5)</em></p>
+<p><strong>loaded via a namespace (and not attached):</strong> <em>Rcpp(v.0.12.10)</em>, <em>nloptr(v.1.0.4)</em>, <em>plyr(v.1.8.4)</em>, <em>base64enc(v.0.1-3)</em>, <em>tools(v.3.3.2)</em>, <em>digest(v.0.6.12)</em>, <em>lme4(v.1.1-13)</em>, <em>packrat(v.0.4.8-1)</em>, <em>evaluate(v.0.10)</em>, <em>tibble(v.1.3.0)</em>, <em>gtable(v.0.2.0)</em>, <em>nlme(v.3.1-131)</em>, <em>lattice(v.0.20-35)</em>, <em>Matrix(v.1.2-8)</em>, <em>psych(v.1.7.3.21)</em>, <em>DBI(v.0.6-1)</em>, <em>yaml(v.2.1.14)</em>, <em>parallel(v.3.3.2)</em>, <em>gdtools(v.0.1.4)</em>, <em>nnet(v.7.3-12)</em>, <em>rprojroot(v.1.2)</em>, <em>grid(v.3.3.2)</em>, <em>R6(v.2.2.1)</em>, <em>foreign(v.0.8-68)</em>, <em>minqa(v.1.2.4)</em>, <em>reshape2(v.1.4.2)</em>, <em>magrittr(v.1.5)</em>, <em>backports(v.1.0.5)</em>, <em>scales(v.0.4.1)</em>, <em>htmltools(v.0.3.6)</em>, <em>splines(v.3.3.2)</em>, <em>MASS(v.7.3-47)</em>, <em>assertthat(v.0.2.0)</em>, <em>mnormt(v.1.5-5)</em>, <em>colorspace(v.1.3-2)</em>, <em>stringi(v.1.1.5)</em>, <em>lazyeval(v.0.2.0)</em> and <em>munsell(v.0.4.3)</em></p>
+</div>
+<div id="references" class="section level5 unnumbered active">
+<h5>References</h5>
+<div id="refs" class="references">
+<div id="ref-rmarkdown">
+<p>Allaire, J., Cheng, J., Xie, Y., McPherson, J., Chang, W., Allen, J., … Arslan, R. (2017). <em>rmarkdown: Dynamic documents for R</em> (<em>R package version 1.5</em>). Retrieved from <a href="https://CRAN.R-project.org/package=rmarkdown" class="uri">https://CRAN.R-project.org/package=rmarkdown</a></p>
+</div>
+<div id="ref-formr">
+<p>Arslan, R. (2014). <em>formr: Formr survey framework</em> (<em>R package version 0.6.11</em>).</p>
+</div>
+<div id="ref-pander">
+<p>Daróczi, G., &amp; Tsegelskyi, R. (2015). <em>pander: An R pandoc writer</em> (<em>R package version 0.6.0</em>). Retrieved from <a href="https://CRAN.R-project.org/package=pander" class="uri">https://CRAN.R-project.org/package=pander</a></p>
+</div>
+<div id="ref-lubridate">
+<p>Grolemund, G., &amp; Wickham, H. (2011). Dates and times made easy with lubridate (<em>version 1.6.0</em>). <em>Journal of Statistical Software</em>, <em>40</em>, 1–25. Retrieved from <a href="http://www.jstatsoft.org/v40/i03/" class="uri">http://www.jstatsoft.org/v40/i03/</a></p>
+</div>
+<div id="ref-R">
+<p>R Core Team. (2016). <em>R: A language and environment for statistical computing</em> (<em>version 3.3.2</em>). Vienna, Austria: R Foundation for Statistical Computing. Retrieved from <a href="https://www.R-project.org/" class="uri">https://www.R-project.org/</a></p>
+</div>
+<div id="ref-broom">
+<p>Robinson, D. (2017). <em>broom: Convert statistical analysis objects into tidy data frames</em> (<em>R package version 0.4.2</em>). Retrieved from <a href="https://CRAN.R-project.org/package=broom" class="uri">https://CRAN.R-project.org/package=broom</a></p>
+</div>
+<div id="ref-packrat">
+<p>Ushey, K., McPherson, J., Cheng, J., Atkins, A., &amp; Allaire, J. (2016). <em>packrat: A dependency management system for projects and their R package dependencies</em> (<em>R package version 0.4.8-1</em>). Retrieved from <a href="https://CRAN.R-project.org/package=packrat" class="uri">https://CRAN.R-project.org/package=packrat</a></p>
+</div>
+<div id="ref-ggplot2">
+<p>Wickham, H. (2009). <em>ggplot2: Elegant graphics for data analysis</em> (<em>version 2.2.1</em>). Springer-Verlag New York. Retrieved from <a href="http://ggplot2.org" class="uri">http://ggplot2.org</a></p>
+</div>
+<div id="ref-stringr">
+<p>Wickham, H. (2017a). <em>stringr: Simple, consistent wrappers for common string operations</em> (<em>R package version 1.2.0</em>). Retrieved from <a href="https://CRAN.R-project.org/package=stringr" class="uri">https://CRAN.R-project.org/package=stringr</a></p>
+</div>
+<div id="ref-tidyr">
+<p>Wickham, H. (2017b). <em>tidyr: Easily tidy data with ’spread()’ and ’gather()’ functions</em> (<em>R package version 0.6.2</em>). Retrieved from <a href="https://CRAN.R-project.org/package=tidyr" class="uri">https://CRAN.R-project.org/package=tidyr</a></p>
+</div>
+<div id="ref-devtools">
+<p>Wickham, H., &amp; Chang, W. (2017). <em>devtools: Tools to make developing R packages easier</em> (<em>R package version 1.13.1</em>). Retrieved from <a href="https://CRAN.R-project.org/package=devtools" class="uri">https://CRAN.R-project.org/package=devtools</a></p>
+</div>
+<div id="ref-dplyr">
+<p>Wickham, H., &amp; Francois, R. (2016). <em>dplyr: A grammar of data manipulation</em> (<em>R package version 0.5.0</em>). Retrieved from <a href="https://CRAN.R-project.org/package=dplyr" class="uri">https://CRAN.R-project.org/package=dplyr</a></p>
+</div>
+<div id="ref-knitr">
+<p>Xie, Y. (2016). <em>knitr: A general-purpose package for dynamic report generation in R</em> (<em>R package version 1.15.1</em>). Retrieved from <a href="http://yihui.name/knitr/" class="uri">http://yihui.name/knitr/</a></p>
+</div>
+<div id="ref-formatR">
+<p>Xie, Y. (2017). <em>formatR: Format R code automatically</em> (<em>R package version 1.5</em>). Retrieved from <a href="https://CRAN.R-project.org/package=formatR" class="uri">https://CRAN.R-project.org/package=formatR</a></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="rmd-source-code">LS0tCnBhZ2V0aXRsZTogIlJlcHJvZHVjaWJsZSB3ZWJzaXRlIHN0YWNrIgpiaWJsaW9ncmFwaHk6IHBhY2tyYXRfYmlibGlvZ3JhcGh5LmJpYnRleApjc2w6IGFwYS1jdXN0b20tbm8taXNzdWUuY3NsCm5vY2l0ZTogfAogICAgQFIgQHBhY2tyYXQgQHJtYXJrZG93biBAa25pdHIgQGZvcm1yIEBwYW5kZXIgQGx1YnJpZGF0ZSBAc3RyaW5nciBAYnJvb20gQGdncGxvdDIgQHRpZHlyIEBkcGx5ciBAZGV2dG9vbHMgQGZvcm1hdFIKLS0tCgojIFJlcHJvZHVjaWJsZSB3ZWJzaXRlIHN0YWNrIHsudGFic2V0IC50YWJzZXQtc3RpY2t5fQoKYGBge3IgbWVzc2FnZT1GQUxTRSwgd2FybmluZz1GQUxTRX0Kc291cmNlKCIwX2hlbHBlcnMuUiIpCmBgYAoKV2UgZGlkIHRoaXMgY29vbCBwcm9qZWN0LgoKV2UgdXNlZCB0aGVzZSBbaGVscGVyIGZ1bmN0aW9uc10oMF9oZWxwZXJzLmh0bWwpIGFuZCAKdGhpcyBba25pdHIgY29tcG9uZW50XShfcmVncmVzc2lvbl9zdW1tYXJ5Lmh0bWwpLiBUaGVzZSBhcmUgdGhlIFsuUnByb2ZpbGUgc2V0dGluZ3NdKC5ScHJvZmlsZS5odG1sKQoKMS4gRmlyc3Qgd2UgW3dyYW5nbGVkIHRoZSBkYXRhXSgxX3dyYW5nbGVfZGF0YS5odG1sKS4KMi4gVGhlbiB3ZSBsb29rZWQgYXQgc29tZSBbZGVzY3JpcHRpdmVzXSgyX2Rlc2NyaXB0aXZlcy5odG1sKS4KMy4gVGhlbiB3ZSBbYW5hbHlzZWRdKDNfYW5hbHlzZXMuaHRtbCkgaXQuCgojIyBBdXRob3JzICYgQWNrbm93bGVkZ2VtZW50cyB7LnRhYnNldCAudGFic2V0LXN0aWNreX0KCiMjIyBBdXRob3JzCllvdSEKClRoaXMgc3VwcGxlbWVudGFyeSB3ZWJzaXRlIGhhcyBiZWVuIGFyY2hpdmVkIG9uIFplbm9kby5vcmcgWyFbRE9JXShodHRwczovL3plbm9kby5vcmcvYmFkZ2UvRE9JLzEwLjUyODEvemVub2RvLjI2ODg4OC5zdmcpXShodHRwczovL2RvaS5vcmcvMTAuNTI4MS96ZW5vZG8uMjY4ODg4KS4KCiMjIyBBY2tub3dsZWRnZW1lbnRzIHsuYWN0aXZlfQoKCiMjIyMgUGFja2FnZSBiaWJsaW9ncmFwaHkgey50YWJzZXQgLnRhYnNldC1zdGlja3l9CgojIyMjIyBTZXNzaW9uIGluZm8KYGBge3J9CiMgTWFrZSBwYWNrcmF0IGJpYmxpb2dyYXBoeQpwYWNrcmF0X2JpYmxpb2dyYXBoeShvdmVyd3JpdGVfYmliID0gVFJVRSwgc2lsZW50ID0gVFJVRSkKIyBUdXJuIHRoZSAuUiBmaWxlcyBpbnRvIC5SbWQgZmlsZXMsIHR1cm4gdGhvc2UgaW50byAuaHRtbCwgcmVtb3ZlIHRoZSAuUm1kIGZpbGVzCnNwaW5fUl9maWxlc190b19zaXRlX2h0bWwoKQpzZXNzaW9uSW5mbygpCmBgYAoKIyMjIyMgUmVmZXJlbmNlcyB7LmFjdGl2ZX0K</div>
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

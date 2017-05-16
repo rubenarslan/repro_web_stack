@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+
+<title></title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/paper.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/navigation-1.1/codefolding.js"></script>
+<script src="site_libs/navigation-1.1/FileSaver.min.js"></script>
+<script src="site_libs/navigation-1.1/sourceembed.js"></script>
+<link href="site_libs/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet" />
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; background-color: #303030; color: #cccccc; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; }
+td.sourceCode { padding-left: 5px; }
+pre, code { color: #cccccc; background-color: #303030; }
+code > span.kw { color: #f0dfaf; } /* Keyword */
+code > span.dt { color: #dfdfbf; } /* DataType */
+code > span.dv { color: #dcdccc; } /* DecVal */
+code > span.bn { color: #dca3a3; } /* BaseN */
+code > span.fl { color: #c0bed1; } /* Float */
+code > span.ch { color: #dca3a3; } /* Char */
+code > span.st { color: #cc9393; } /* String */
+code > span.co { color: #7f9f7f; } /* Comment */
+code > span.ot { color: #efef8f; } /* Other */
+code > span.al { color: #ffcfaf; } /* Alert */
+code > span.fu { color: #efef8f; } /* Function */
+code > span.er { color: #c3bf9f; } /* Error */
+code > span.wa { color: #7f9f7f; font-weight: bold; } /* Warning */
+code > span.cn { color: #dca3a3; font-weight: bold; } /* Constant */
+code > span.sc { color: #dca3a3; } /* SpecialChar */
+code > span.vs { color: #cc9393; } /* VerbatimString */
+code > span.ss { color: #cc9393; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { } /* Variable */
+code > span.cf { color: #f0dfaf; } /* ControlFlow */
+code > span.op { color: #f0efd0; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #ffcfaf; font-weight: bold; } /* Preprocessor */
+code > span.at { } /* Attribute */
+code > span.do { color: #7f9f7f; } /* Documentation */
+code > span.an { color: #7f9f7f; font-weight: bold; } /* Annotation */
+code > span.cv { color: #7f9f7f; font-weight: bold; } /* CommentVar */
+code > span.in { color: #7f9f7f; font-weight: bold; } /* Information */
+div.sourceCode {
+  overflow-x: visible;
+}
+</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+#rmd-source-code {
+  display: none;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 64px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 69px;
+  margin-top: -69px;
+}
+
+.section h2 {
+  padding-top: 69px;
+  margin-top: -69px;
+}
+.section h3 {
+  padding-top: 69px;
+  margin-top: -69px;
+}
+.section h4 {
+  padding-top: 69px;
+  margin-top: -69px;
+}
+.section h5 {
+  padding-top: 69px;
+  margin-top: -69px;
+}
+.section h6 {
+  padding-top: 69px;
+  margin-top: -69px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
+<script>
+$(document).ready(function () {
+  window.initializeSourceEmbed("0_helpers.Rmd");
+  window.initializeCodeFolding("show" === "show");
+});
+</script>
+
+
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Reproducible website stack</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Overview</a>
+</li>
+<li>
+  <a href="1_wrangle_data.html">Data wrangling</a>
+</li>
+<li>
+  <a href="2_descriptives.html">Descriptives</a>
+</li>
+<li>
+  <a href="3_analyses.html">Analyses</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://github.com/rubenarslan/repro_web_stack">
+    <span class="fa fa-github"></span>
+     
+    
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+<div class="btn-group pull-right">
+<button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu" style="min-width: 50px;">
+<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
+<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
+<li role="separator" class="divider"></li>
+<li><a id="rmd-download-source" href="#">Download Rmd</a></li>
+</ul>
+</div>
+
+
+
+
+</div>
+
+
+<div id="helper-functions-used-throughout" class="section level1 tabset tabset-sticky">
+<h1>Helper functions used throughout</h1>
+<p>documentation on the functions is interspersed through code comments</p>
+<div id="set-some-options" class="section level2">
+<h2>set some options</h2>
+<p>dont show messages when loading libraries</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># library = function(...) suppressMessages(base::library(...))</span></code></pre></div>
+<p>never set strings as factors automatically (google for reason why)</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">options</span>(<span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>)</code></pre></div>
+<p>show four significant digits tops</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">options</span>(<span class="dt">digits =</span> <span class="dv">4</span>)</code></pre></div>
+<p>tend not to show scientific notation, because we’re just psychologists</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">options</span>(<span class="dt">scipen =</span> <span class="dv">7</span>)</code></pre></div>
+<p>make output a bit wider</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">options</span>(<span class="dt">width =</span> <span class="dv">110</span>)</code></pre></div>
+<p>set a seed to make analyses depending on random number generation reproducible</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">set.seed</span>(<span class="dv">1710</span>) <span class="co"># if you use your significant other&#39;s birthday make sure you stay together for the sake of reproducibility</span></code></pre></div>
+</div>
+<div id="load-packages" class="section level2">
+<h2>Load packages</h2>
+<p>generate the site</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(rmarkdown)</code></pre></div>
+<p>set options for chunks</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(knitr)</code></pre></div>
+<p>my formr utility package to generate e.g. the bibliography</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(formr)</code></pre></div>
+<p>pretty-printed output</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(pander)</code></pre></div>
+<p>tidyverse date times</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(lubridate)</code></pre></div>
+<p>tidyverse strings</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(stringr)</code></pre></div>
+<p>extractor functions for models</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(broom)</code></pre></div>
+<p>marginal effects plots for regressions</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(effects)</code></pre></div>
+<p>grammar of graphics plots</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggplot2)</code></pre></div>
+<p>tidyverse: transform data wide to long</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyr)</code></pre></div>
+<p>svg graphs</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(svglite);</code></pre></div>
+<p>tidyverse-style data wrangling. has a lot of naming conflicts, so always load last</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(dplyr)</code></pre></div>
+<p>some packages may be needed without being loaded</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fool_packrat =<span class="st"> </span>function() {
+    <span class="co"># needed to install formr package</span>
+    <span class="kw">library</span>(devtools)
+    <span class="co"># needed to actually run rmarkdown in RStudio, but for some reason not in its dependencies</span>
+    <span class="kw">library</span>(formatR)
+}</code></pre></div>
+</div>
+<div id="spin-r-files" class="section level2">
+<h2>Spin R files</h2>
+<p>R scripts can be documented in markdown using Roxygen comments, as demonstrated here This function turns all R files (that don’t have an Rmd file of the same name and that don’t start with an underscore _) into HTML pages</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">spin_R_files_to_site_html =<span class="st"> </span>function() {
+    <span class="kw">library</span>(knitr)
+    all_Rs =<span class="st"> </span><span class="kw">c</span>(<span class="kw">list.files</span>(<span class="dt">pattern =</span> <span class="st">&quot;^[^_].+</span><span class="ch">\\</span><span class="st">.R$&quot;</span>), <span class="st">&quot;.Rprofile&quot;</span>)
+    component_Rmds =<span class="st"> </span><span class="kw">list.files</span>(<span class="dt">pattern =</span> <span class="st">&quot;^_.+</span><span class="ch">\\</span><span class="st">.Rmd$&quot;</span>)
+    temporary_Rmds =<span class="st"> </span><span class="kw">c</span>()
+    for (i in <span class="kw">seq_along</span>(all_Rs)) {
+        if(all_Rs[i] ==<span class="st"> &quot;.Rprofile&quot;</span>) {
+            Rmd_file =<span class="st"> &quot;.Rprofile.Rmd&quot;</span>
+        } else {
+            Rmd_file =<span class="st"> </span><span class="kw">paste0</span>(all_Rs[i], <span class="st">&quot;md&quot;</span>)
+        }
+        if (!<span class="kw">file.exists</span>(Rmd_file)) {
+            next_document =<span class="st"> </span><span class="kw">length</span>(temporary_Rmds) +<span class="st"> </span><span class="dv">1</span>
+            temporary_Rmds[next_document] =<span class="st"> </span><span class="kw">spin</span>(all_Rs[i], <span class="dt">knit =</span> <span class="ot">FALSE</span>, <span class="dt">envir =</span> <span class="kw">new.env</span>(), <span class="dt">format =</span> <span class="st">&quot;Rmd&quot;</span>)
+            prepended_yaml =<span class="st"> </span><span class="kw">paste0</span>(<span class="kw">c</span>(<span class="st">&quot;---</span>
+<span class="st">output:</span>
+<span class="st">  html_document:</span>
+<span class="st">    code_folding: &#39;show&#39;</span>
+<span class="st">---</span>
+
+<span class="st">&quot;</span>, <span class="kw">readLines</span>(temporary_Rmds[next_document])), <span class="dt">collapse =</span> <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>)
+            <span class="kw">cat</span>(prepended_yaml, <span class="dt">file =</span> temporary_Rmds[next_document])
+        }
+    }
+    components_and_scripts =<span class="st"> </span><span class="kw">c</span>(temporary_Rmds, component_Rmds)
+    for (i in <span class="kw">seq_along</span>(components_and_scripts)) {
+        opts_chunk$<span class="kw">set</span>(<span class="dt">eval =</span> <span class="ot">FALSE</span>, <span class="dt">cache =</span> <span class="ot">FALSE</span>)
+        <span class="co"># if we call render_site on the .R file directly it adds a header I don&#39;t like</span>
+        rmarkdown::<span class="kw">render_site</span>(components_and_scripts[i], <span class="dt">quiet =</span> <span class="ot">TRUE</span>)
+    }
+    opts_chunk$<span class="kw">set</span>(<span class="dt">eval =</span> <span class="ot">TRUE</span>, <span class="dt">cache =</span> <span class="ot">TRUE</span>)
+    <span class="kw">unlink</span>(temporary_Rmds)
+}</code></pre></div>
+</div>
+<div id="output-options" class="section level2">
+<h2>Output options</h2>
+<p>use pander to pretty-print objects (if possible)</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">opts_chunk$<span class="kw">set</span>(
+    <span class="dt">render =</span> pander_handler,
+    <span class="dt">dev =</span> <span class="st">&quot;svglite&quot;</span>
+    )</code></pre></div>
+<p>don’t split tables, scroll horizontally</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">panderOptions</span>(<span class="st">&quot;table.split.table&quot;</span>, <span class="ot">Inf</span>)</code></pre></div>
+</div>
+<div id="knitr-components" class="section level2">
+<h2>Knitr components</h2>
+<p>summarise regression using a “knitr component”</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">regression_summary =<span class="st"> </span>function(model, <span class="dt">indent =</span> <span class="st">&quot;##&quot;</span>) {
+    formr::<span class="kw">asis_knit_child</span>(<span class="st">&quot;_regression_summary.Rmd&quot;</span>)
+}</code></pre></div>
+</div>
+</div>
+
+<div id="rmd-source-code">LS0tCm91dHB1dDoKICBodG1sX2RvY3VtZW50OgogICAgY29kZV9mb2xkaW5nOiAnc2hvdycKLS0tCgoKIyBIZWxwZXIgZnVuY3Rpb25zIHVzZWQgdGhyb3VnaG91dCB7LnRhYnNldCAudGFic2V0LXN0aWNreX0KZG9jdW1lbnRhdGlvbiBvbiB0aGUgZnVuY3Rpb25zIGlzIGludGVyc3BlcnNlZCB0aHJvdWdoIGNvZGUgY29tbWVudHMKCiMjIHNldCBzb21lIG9wdGlvbnMKZG9udCBzaG93IG1lc3NhZ2VzIHdoZW4gbG9hZGluZyBsaWJyYXJpZXMKCmBgYHtyIH0KIyBsaWJyYXJ5ID0gZnVuY3Rpb24oLi4uKSBzdXBwcmVzc01lc3NhZ2VzKGJhc2U6OmxpYnJhcnkoLi4uKSkKYGBgCgpuZXZlciBzZXQgc3RyaW5ncyBhcyBmYWN0b3JzIGF1dG9tYXRpY2FsbHkgKGdvb2dsZSBmb3IgcmVhc29uIHdoeSkKCmBgYHtyIH0Kb3B0aW9ucyhzdHJpbmdzQXNGYWN0b3JzID0gRkFMU0UpCmBgYAoKc2hvdyBmb3VyIHNpZ25pZmljYW50IGRpZ2l0cyB0b3BzCgpgYGB7ciB9Cm9wdGlvbnMoZGlnaXRzID0gNCkKYGBgCgp0ZW5kIG5vdCB0byBzaG93IHNjaWVudGlmaWMgbm90YXRpb24sIGJlY2F1c2Ugd2UncmUganVzdCBwc3ljaG9sb2dpc3RzCgpgYGB7ciB9Cm9wdGlvbnMoc2NpcGVuID0gNykKYGBgCgptYWtlIG91dHB1dCBhIGJpdCB3aWRlcgoKYGBge3IgfQpvcHRpb25zKHdpZHRoID0gMTEwKQpgYGAKCnNldCBhIHNlZWQgdG8gbWFrZSBhbmFseXNlcyBkZXBlbmRpbmcgb24gcmFuZG9tIG51bWJlciBnZW5lcmF0aW9uIHJlcHJvZHVjaWJsZQoKYGBge3IgfQpzZXQuc2VlZCgxNzEwKSAjIGlmIHlvdSB1c2UgeW91ciBzaWduaWZpY2FudCBvdGhlcidzIGJpcnRoZGF5IG1ha2Ugc3VyZSB5b3Ugc3RheSB0b2dldGhlciBmb3IgdGhlIHNha2Ugb2YgcmVwcm9kdWNpYmlsaXR5CmBgYAoKIyMgTG9hZCBwYWNrYWdlcwpnZW5lcmF0ZSB0aGUgc2l0ZQoKYGBge3IgfQpsaWJyYXJ5KHJtYXJrZG93bikKYGBgCgpzZXQgb3B0aW9ucyBmb3IgY2h1bmtzCgpgYGB7ciB9CmxpYnJhcnkoa25pdHIpCmBgYAoKbXkgZm9ybXIgdXRpbGl0eSBwYWNrYWdlIHRvIGdlbmVyYXRlIGUuZy4gdGhlIGJpYmxpb2dyYXBoeQoKYGBge3IgfQpsaWJyYXJ5KGZvcm1yKQpgYGAKCnByZXR0eS1wcmludGVkIG91dHB1dAoKYGBge3IgfQpsaWJyYXJ5KHBhbmRlcikKYGBgCgp0aWR5dmVyc2UgZGF0ZSB0aW1lcwoKYGBge3IgfQpsaWJyYXJ5KGx1YnJpZGF0ZSkKYGBgCgp0aWR5dmVyc2Ugc3RyaW5ncwoKYGBge3IgfQpsaWJyYXJ5KHN0cmluZ3IpCmBgYAoKZXh0cmFjdG9yIGZ1bmN0aW9ucyBmb3IgbW9kZWxzCgpgYGB7ciB9CmxpYnJhcnkoYnJvb20pCmBgYAoKbWFyZ2luYWwgZWZmZWN0cyBwbG90cyBmb3IgcmVncmVzc2lvbnMKCmBgYHtyIH0KbGlicmFyeShlZmZlY3RzKQpgYGAKCmdyYW1tYXIgb2YgZ3JhcGhpY3MgcGxvdHMKCmBgYHtyIH0KbGlicmFyeShnZ3Bsb3QyKQpgYGAKCnRpZHl2ZXJzZTogdHJhbnNmb3JtIGRhdGEgd2lkZSB0byBsb25nCgpgYGB7ciB9CmxpYnJhcnkodGlkeXIpCmBgYAoKc3ZnIGdyYXBocwoKYGBge3IgfQpsaWJyYXJ5KHN2Z2xpdGUpOwpgYGAKCnRpZHl2ZXJzZS1zdHlsZSBkYXRhIHdyYW5nbGluZy4gaGFzIGEgbG90IG9mIG5hbWluZyBjb25mbGljdHMsIHNvIGFsd2F5cyBsb2FkIGxhc3QKCmBgYHtyIH0KbGlicmFyeShkcGx5cikKYGBgCgpzb21lIHBhY2thZ2VzIG1heSBiZSBuZWVkZWQgd2l0aG91dCBiZWluZyBsb2FkZWQKCmBgYHtyIH0KZm9vbF9wYWNrcmF0ID0gZnVuY3Rpb24oKSB7CgkjIG5lZWRlZCB0byBpbnN0YWxsIGZvcm1yIHBhY2thZ2UKCWxpYnJhcnkoZGV2dG9vbHMpCgkjIG5lZWRlZCB0byBhY3R1YWxseSBydW4gcm1hcmtkb3duIGluIFJTdHVkaW8sIGJ1dCBmb3Igc29tZSByZWFzb24gbm90IGluIGl0cyBkZXBlbmRlbmNpZXMKCWxpYnJhcnkoZm9ybWF0UikKfQpgYGAKCiMjIFNwaW4gUiBmaWxlcwpSIHNjcmlwdHMgY2FuIGJlIGRvY3VtZW50ZWQgaW4gbWFya2Rvd24gdXNpbmcgUm94eWdlbiBjb21tZW50cywgYXMgZGVtb25zdHJhdGVkIGhlcmUKVGhpcyBmdW5jdGlvbiB0dXJucyBhbGwgUiBmaWxlcyAodGhhdCBkb24ndCBoYXZlIGFuIFJtZCBmaWxlIG9mIHRoZSBzYW1lIG5hbWUgYW5kIHRoYXQgZG9uJ3Qgc3RhcnQgd2l0aCBhbiB1bmRlcnNjb3JlIF8pIGludG8gSFRNTCBwYWdlcwoKYGBge3IgfQpzcGluX1JfZmlsZXNfdG9fc2l0ZV9odG1sID0gZnVuY3Rpb24oKSB7CglsaWJyYXJ5KGtuaXRyKQoJYWxsX1JzID0gYyhsaXN0LmZpbGVzKHBhdHRlcm4gPSAiXlteX10uK1xcLlIkIiksICIuUnByb2ZpbGUiKQoJY29tcG9uZW50X1JtZHMgPSBsaXN0LmZpbGVzKHBhdHRlcm4gPSAiXl8uK1xcLlJtZCQiKQoJdGVtcG9yYXJ5X1JtZHMgPSBjKCkKCWZvciAoaSBpbiBzZXFfYWxvbmcoYWxsX1JzKSkgewoJCWlmKGFsbF9Sc1tpXSA9PSAiLlJwcm9maWxlIikgewoJCQlSbWRfZmlsZSA9ICIuUnByb2ZpbGUuUm1kIgoJCX0gZWxzZSB7CgkJCVJtZF9maWxlID0gcGFzdGUwKGFsbF9Sc1tpXSwgIm1kIikKCQl9CgkJaWYgKCFmaWxlLmV4aXN0cyhSbWRfZmlsZSkpIHsKCQkJbmV4dF9kb2N1bWVudCA9IGxlbmd0aCh0ZW1wb3JhcnlfUm1kcykgKyAxCgkJCXRlbXBvcmFyeV9SbWRzW25leHRfZG9jdW1lbnRdID0gc3BpbihhbGxfUnNbaV0sIGtuaXQgPSBGQUxTRSwgZW52aXIgPSBuZXcuZW52KCksIGZvcm1hdCA9ICJSbWQiKQoJCQlwcmVwZW5kZWRfeWFtbCA9IHBhc3RlMChjKCItLS0Kb3V0cHV0OgogIGh0bWxfZG9jdW1lbnQ6CiAgICBjb2RlX2ZvbGRpbmc6ICdzaG93JwotLS0KCiIsIHJlYWRMaW5lcyh0ZW1wb3JhcnlfUm1kc1tuZXh0X2RvY3VtZW50XSkpLCBjb2xsYXBzZSA9ICJcbiIpCgkJCWNhdChwcmVwZW5kZWRfeWFtbCwgZmlsZSA9IHRlbXBvcmFyeV9SbWRzW25leHRfZG9jdW1lbnRdKQoJCX0KCX0KCWNvbXBvbmVudHNfYW5kX3NjcmlwdHMgPSBjKHRlbXBvcmFyeV9SbWRzLCBjb21wb25lbnRfUm1kcykKCWZvciAoaSBpbiBzZXFfYWxvbmcoY29tcG9uZW50c19hbmRfc2NyaXB0cykpIHsKCQlvcHRzX2NodW5rJHNldChldmFsID0gRkFMU0UsIGNhY2hlID0gRkFMU0UpCgkJIyBpZiB3ZSBjYWxsIHJlbmRlcl9zaXRlIG9uIHRoZSAuUiBmaWxlIGRpcmVjdGx5IGl0IGFkZHMgYSBoZWFkZXIgSSBkb24ndCBsaWtlCgkJcm1hcmtkb3duOjpyZW5kZXJfc2l0ZShjb21wb25lbnRzX2FuZF9zY3JpcHRzW2ldLCBxdWlldCA9IFRSVUUpCgl9CglvcHRzX2NodW5rJHNldChldmFsID0gVFJVRSwgY2FjaGUgPSBUUlVFKQoJdW5saW5rKHRlbXBvcmFyeV9SbWRzKQp9CmBgYAoKIyMgT3V0cHV0IG9wdGlvbnMKdXNlIHBhbmRlciB0byBwcmV0dHktcHJpbnQgb2JqZWN0cyAoaWYgcG9zc2libGUpCgpgYGB7ciB9Cm9wdHNfY2h1bmskc2V0KAoJcmVuZGVyID0gcGFuZGVyX2hhbmRsZXIsCglkZXYgPSAic3ZnbGl0ZSIKCSkKYGBgCgpkb24ndCBzcGxpdCB0YWJsZXMsIHNjcm9sbCBob3Jpem9udGFsbHkKCmBgYHtyIH0KcGFuZGVyT3B0aW9ucygidGFibGUuc3BsaXQudGFibGUiLCBJbmYpCmBgYAoKIyMgS25pdHIgY29tcG9uZW50cwoKc3VtbWFyaXNlIHJlZ3Jlc3Npb24gdXNpbmcgYSAia25pdHIgY29tcG9uZW50IgoKYGBge3IgfQpyZWdyZXNzaW9uX3N1bW1hcnkgPSBmdW5jdGlvbihtb2RlbCwgaW5kZW50ID0gIiMjIikgewoJZm9ybXI6OmFzaXNfa25pdF9jaGlsZCgiX3JlZ3Jlc3Npb25fc3VtbWFyeS5SbWQiKQp9CmBgYAo=</div>
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

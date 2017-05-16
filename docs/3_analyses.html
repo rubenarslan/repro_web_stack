@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+
+<title></title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/paper.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/navigation-1.1/codefolding.js"></script>
+<script src="site_libs/navigation-1.1/FileSaver.min.js"></script>
+<script src="site_libs/navigation-1.1/sourceembed.js"></script>
+<link href="site_libs/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet" />
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; background-color: #303030; color: #cccccc; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; }
+td.sourceCode { padding-left: 5px; }
+pre, code { color: #cccccc; background-color: #303030; }
+code > span.kw { color: #f0dfaf; } /* Keyword */
+code > span.dt { color: #dfdfbf; } /* DataType */
+code > span.dv { color: #dcdccc; } /* DecVal */
+code > span.bn { color: #dca3a3; } /* BaseN */
+code > span.fl { color: #c0bed1; } /* Float */
+code > span.ch { color: #dca3a3; } /* Char */
+code > span.st { color: #cc9393; } /* String */
+code > span.co { color: #7f9f7f; } /* Comment */
+code > span.ot { color: #efef8f; } /* Other */
+code > span.al { color: #ffcfaf; } /* Alert */
+code > span.fu { color: #efef8f; } /* Function */
+code > span.er { color: #c3bf9f; } /* Error */
+code > span.wa { color: #7f9f7f; font-weight: bold; } /* Warning */
+code > span.cn { color: #dca3a3; font-weight: bold; } /* Constant */
+code > span.sc { color: #dca3a3; } /* SpecialChar */
+code > span.vs { color: #cc9393; } /* VerbatimString */
+code > span.ss { color: #cc9393; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { } /* Variable */
+code > span.cf { color: #f0dfaf; } /* ControlFlow */
+code > span.op { color: #f0efd0; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #ffcfaf; font-weight: bold; } /* Preprocessor */
+code > span.at { } /* Attribute */
+code > span.do { color: #7f9f7f; } /* Documentation */
+code > span.an { color: #7f9f7f; font-weight: bold; } /* Annotation */
+code > span.cv { color: #7f9f7f; font-weight: bold; } /* CommentVar */
+code > span.in { color: #7f9f7f; font-weight: bold; } /* Information */
+div.sourceCode {
+  overflow-x: visible;
+}
+</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+#rmd-source-code {
+  display: none;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 64px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 69px;
+  margin-top: -69px;
+}
+
+.section h2 {
+  padding-top: 69px;
+  margin-top: -69px;
+}
+.section h3 {
+  padding-top: 69px;
+  margin-top: -69px;
+}
+.section h4 {
+  padding-top: 69px;
+  margin-top: -69px;
+}
+.section h5 {
+  padding-top: 69px;
+  margin-top: -69px;
+}
+.section h6 {
+  padding-top: 69px;
+  margin-top: -69px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
+<script>
+$(document).ready(function () {
+  window.initializeSourceEmbed("3_analyses.Rmd");
+  window.initializeCodeFolding("hide" === "show");
+});
+</script>
+
+
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Reproducible website stack</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Overview</a>
+</li>
+<li>
+  <a href="1_wrangle_data.html">Data wrangling</a>
+</li>
+<li>
+  <a href="2_descriptives.html">Descriptives</a>
+</li>
+<li>
+  <a href="3_analyses.html">Analyses</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://github.com/rubenarslan/repro_web_stack">
+    <span class="fa fa-github"></span>
+     
+    
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+<div class="btn-group pull-right">
+<button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu" style="min-width: 50px;">
+<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
+<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
+<li role="separator" class="divider"></li>
+<li><a id="rmd-download-source" href="#">Download Rmd</a></li>
+</ul>
+</div>
+
+
+
+
+</div>
+
+
+<div id="wrangle-data" class="section level1 tabset tabset-sticky">
+<h1>Wrangle data</h1>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">source</span>(<span class="st">&quot;0_helpers.R&quot;</span>)</code></pre></div>
+<div id="load-data" class="section level2">
+<h2>Load data</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">msleep =<span class="st"> </span><span class="kw">readRDS</span>(<span class="st">&quot;msleep_processed.rds&quot;</span>)</code></pre></div>
+</div>
+<div id="basic-model" class="section level2 tabset tabset-sticky">
+<h2>Basic model</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">m1 =<span class="st"> </span><span class="kw">lm</span>(sleep_rem ~<span class="st"> </span>sleep_total, <span class="dt">data =</span> msleep)
+<span class="kw">regression_summary</span>(m1)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">if (!<span class="kw">exists</span>(<span class="st">&quot;indent&quot;</span>)) {
+    indent =<span class="st"> &#39;##&#39;</span> <span class="co"># ugly hack so _regression_summary can be &quot;spun&quot; (variables included via `r ` have to be available)</span>
+}</code></pre></div>
+<div id="summary" class="section level3">
+<h3>Summary</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(model)</code></pre></div>
+<table style="width:86%;">
+<colgroup>
+<col width="25%" />
+<col width="15%" />
+<col width="18%" />
+<col width="13%" />
+<col width="13%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center"> </th>
+<th align="center">Estimate</th>
+<th align="center">Std. Error</th>
+<th align="center">t value</th>
+<th align="center">Pr(&gt;|t|)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><strong>sleep_total</strong></td>
+<td align="center">0.2153</td>
+<td align="center">0.02459</td>
+<td align="center">8.756</td>
+<td align="center">2.916e-12</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>(Intercept)</strong></td>
+<td align="center">-0.3613</td>
+<td align="center">0.2783</td>
+<td align="center">-1.298</td>
+<td align="center">0.1993</td>
+</tr>
+</tbody>
+</table>
+<table style="width:85%;">
+<caption>Fitting linear model: sleep_rem ~ sleep_total</caption>
+<colgroup>
+<col width="20%" />
+<col width="30%" />
+<col width="11%" />
+<col width="22%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">Observations</th>
+<th align="center">Residual Std. Error</th>
+<th align="center"><span class="math inline">\(R^2\)</span></th>
+<th align="center">Adjusted <span class="math inline">\(R^2\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">61</td>
+<td align="center">0.8634</td>
+<td align="center">0.5651</td>
+<td align="center">0.5578</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="marginal-effect-plot" class="section level3">
+<h3>Marginal effect plot</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(effects::<span class="kw">allEffects</span>(model))</code></pre></div>
+<p><img src="3_analyses_files/figure-html/marginal_effects-1.svg" width="672" /></p>
+</div>
+<div id="diagnostics" class="section level3">
+<h3>Diagnostics</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(model)</code></pre></div>
+<p><img src="3_analyses_files/figure-html/diagnostics-1.svg" width="672" /><img src="3_analyses_files/figure-html/diagnostics-2.svg" width="672" /><img src="3_analyses_files/figure-html/diagnostics-3.svg" width="672" /><img src="3_analyses_files/figure-html/diagnostics-4.svg" width="672" /></p>
+</div>
+</div>
+<div id="super-advanced-model" class="section level2 active tabset tabset-sticky">
+<h2>Super-advanced model</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">m2 =<span class="st"> </span><span class="kw">lm</span>(sleep_rem ~<span class="st"> </span>sleep_total +<span class="st"> </span><span class="kw">log</span>(brainwt) +<span class="st"> </span><span class="kw">log</span>(bodywt) +<span class="st"> </span>eats, <span class="dt">data =</span> msleep)
+<span class="kw">regression_summary</span>(m2)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">if (!<span class="kw">exists</span>(<span class="st">&quot;indent&quot;</span>)) {
+    indent =<span class="st"> &#39;##&#39;</span> <span class="co"># ugly hack so _regression_summary can be &quot;spun&quot; (variables included via `r ` have to be available)</span>
+}</code></pre></div>
+<div id="summary-1" class="section level3">
+<h3>Summary</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(model)</code></pre></div>
+<table style="width:88%;">
+<colgroup>
+<col width="26%" />
+<col width="15%" />
+<col width="18%" />
+<col width="13%" />
+<col width="13%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center"> </th>
+<th align="center">Estimate</th>
+<th align="center">Std. Error</th>
+<th align="center">t value</th>
+<th align="center">Pr(&gt;|t|)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><strong>sleep_total</strong></td>
+<td align="center">0.1879</td>
+<td align="center">0.03814</td>
+<td align="center">4.926</td>
+<td align="center">0.00001886</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>log(brainwt)</strong></td>
+<td align="center">-0.3747</td>
+<td align="center">0.1946</td>
+<td align="center">-1.926</td>
+<td align="center">0.06203</td>
+</tr>
+<tr class="odd">
+<td align="center"><strong>log(bodywt)</strong></td>
+<td align="center">0.3648</td>
+<td align="center">0.1527</td>
+<td align="center">2.39</td>
+<td align="center">0.02223</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>eatsplants</strong></td>
+<td align="center">-0.5707</td>
+<td align="center">0.3218</td>
+<td align="center">-1.773</td>
+<td align="center">0.08464</td>
+</tr>
+<tr class="odd">
+<td align="center"><strong>eatsinsects</strong></td>
+<td align="center">0.3757</td>
+<td align="center">0.486</td>
+<td align="center">0.7731</td>
+<td align="center">0.4445</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>eatsmeat</strong></td>
+<td align="center">0.2837</td>
+<td align="center">0.3864</td>
+<td align="center">0.7344</td>
+<td align="center">0.4675</td>
+</tr>
+<tr class="odd">
+<td align="center"><strong>(Intercept)</strong></td>
+<td align="center">-1.731</td>
+<td align="center">0.9195</td>
+<td align="center">-1.883</td>
+<td align="center">0.06787</td>
+</tr>
+</tbody>
+</table>
+<table style="width:85%;">
+<caption>Fitting linear model: sleep_rem ~ sleep_total + log(brainwt) + log(bodywt) + eats</caption>
+<colgroup>
+<col width="20%" />
+<col width="30%" />
+<col width="11%" />
+<col width="22%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">Observations</th>
+<th align="center">Residual Std. Error</th>
+<th align="center"><span class="math inline">\(R^2\)</span></th>
+<th align="center">Adjusted <span class="math inline">\(R^2\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">43</td>
+<td align="center">0.7932</td>
+<td align="center">0.6408</td>
+<td align="center">0.5809</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="marginal-effect-plot-1" class="section level3">
+<h3>Marginal effect plot</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(effects::<span class="kw">allEffects</span>(model))</code></pre></div>
+<p><img src="3_analyses_files/figure-html/marginal_effects-8-1.svg" width="672" /></p>
+</div>
+<div id="diagnostics-1" class="section level3">
+<h3>Diagnostics</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(model)</code></pre></div>
+<p><img src="3_analyses_files/figure-html/diagnostics-9-1.svg" width="672" /><img src="3_analyses_files/figure-html/diagnostics-9-2.svg" width="672" /><img src="3_analyses_files/figure-html/diagnostics-9-3.svg" width="672" /><img src="3_analyses_files/figure-html/diagnostics-9-4.svg" width="672" /></p>
+</div>
+</div>
+<div id="summary-2" class="section level2">
+<h2>Summary</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">bind_rows</span>(
+    <span class="st">&quot;Model 1&quot;</span> =<span class="st"> </span><span class="kw">glance</span>(m1), 
+    <span class="st">&quot;Model 2&quot;</span> =<span class="st"> </span><span class="kw">glance</span>(m2),
+<span class="dt">.id =</span> <span class="st">&quot;Model&quot;</span>) %&gt;%<span class="st"> </span><span class="kw">arrange</span>(AIC) %&gt;%<span class="st"> </span><span class="kw">select</span>(Model, adj.r.squared, BIC, deviance, df.residual)</code></pre></div>
+<table style="width:75%;">
+<colgroup>
+<col width="11%" />
+<col width="22%" />
+<col width="8%" />
+<col width="15%" />
+<col width="18%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">Model</th>
+<th align="center">adj.r.squared</th>
+<th align="center">BIC</th>
+<th align="center">deviance</th>
+<th align="center">df.residual</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">Model 2</td>
+<td align="center">0.5809</td>
+<td align="center">124.6</td>
+<td align="center">22.65</td>
+<td align="center">36</td>
+</tr>
+<tr class="even">
+<td align="center">Model 1</td>
+<td align="center">0.5578</td>
+<td align="center">165.5</td>
+<td align="center">43.98</td>
+<td align="center">59</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="rmd-source-code">IyBXcmFuZ2xlIGRhdGEgey50YWJzZXQgLnRhYnNldC1zdGlja3l9CgpgYGB7ciBtZXNzYWdlPUZBTFNFLCB3YXJuaW5nPUZBTFNFfQpzb3VyY2UoIjBfaGVscGVycy5SIikKYGBgCgojIyBMb2FkIGRhdGEKCmBgYHtyfQptc2xlZXAgPSByZWFkUkRTKCJtc2xlZXBfcHJvY2Vzc2VkLnJkcyIpCmBgYAoKIyMgQmFzaWMgbW9kZWwgey50YWJzZXQgLnRhYnNldC1zdGlja3l9CgpgYGB7cn0KbTEgPSBsbShzbGVlcF9yZW0gfiBzbGVlcF90b3RhbCwgZGF0YSA9IG1zbGVlcCkKcmVncmVzc2lvbl9zdW1tYXJ5KG0xKQpgYGAKCiMjIFN1cGVyLWFkdmFuY2VkIG1vZGVsIHsuYWN0aXZlIC50YWJzZXQgLnRhYnNldC1zdGlja3l9CgpgYGB7cn0KbTIgPSBsbShzbGVlcF9yZW0gfiBzbGVlcF90b3RhbCArIGxvZyhicmFpbnd0KSArIGxvZyhib2R5d3QpICsgZWF0cywgZGF0YSA9IG1zbGVlcCkKcmVncmVzc2lvbl9zdW1tYXJ5KG0yKQpgYGAKCiMjIFN1bW1hcnkKCmBgYHtyfQpiaW5kX3Jvd3MoCgkiTW9kZWwgMSIgPSBnbGFuY2UobTEpLCAKCSJNb2RlbCAyIiA9IGdsYW5jZShtMiksCi5pZCA9ICJNb2RlbCIpICU+JSBhcnJhbmdlKEFJQykgJT4lIHNlbGVjdChNb2RlbCwgYWRqLnIuc3F1YXJlZCwgQklDLCBkZXZpYW5jZSwgZGYucmVzaWR1YWwpCmBgYAoK</div>
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
