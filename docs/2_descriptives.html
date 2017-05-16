@@ -114,6 +114,7 @@ h6 {
 }
 </style>
 
+<link rel="stylesheet" href="styles.css" type="text/css" />
 
 </head>
 
@@ -276,14 +277,14 @@ $(document).ready(function () {
 </div>
 
 
-<div id="wrangle-data" class="section level1 tabset tabset-sticky">
-<h1>Wrangle data</h1>
+<div id="descriptives" class="section level1 tabset tabset-sticky">
+<h1>Descriptives</h1>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">source</span>(<span class="st">&quot;0_helpers.R&quot;</span>)</code></pre></div>
 <div id="load-data" class="section level2">
 <h2>Load data</h2>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">msleep =<span class="st"> </span><span class="kw">readRDS</span>(<span class="st">&quot;msleep_processed.rds&quot;</span>)</code></pre></div>
 </div>
-<div id="descriptives" class="section level2 active">
+<div id="descriptives-1" class="section level2 active">
 <h2>Descriptives</h2>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">msleep %&gt;%<span class="st"> </span>
 <span class="st">    </span><span class="kw">select</span>(sleep_total, sleep_rem, brainwt, bodywt) %&gt;%<span class="st"> </span>
@@ -380,7 +381,7 @@ $(document).ready(function () {
 </div>
 </div>
 
-<div id="rmd-source-code">IyBXcmFuZ2xlIGRhdGEgey50YWJzZXQgLnRhYnNldC1zdGlja3l9CgpgYGB7ciBtZXNzYWdlPUZBTFNFLCB3YXJuaW5nPUZBTFNFfQpzb3VyY2UoIjBfaGVscGVycy5SIikKYGBgCgojIyBMb2FkIGRhdGEKCmBgYHtyfQptc2xlZXAgPSByZWFkUkRTKCJtc2xlZXBfcHJvY2Vzc2VkLnJkcyIpCmBgYAoKIyMgRGVzY3JpcHRpdmVzIHsuYWN0aXZlfQpgYGB7ciB3YXJuaW5nPUZBTFNFfQptc2xlZXAgJT4lIAoJc2VsZWN0KHNsZWVwX3RvdGFsLCBzbGVlcF9yZW0sIGJyYWlud3QsIGJvZHl3dCkgJT4lIAoJc3VtbWFyaXNlX2FsbF92YXJzKCkKYGBgCgojIyBEaXN0cmlidXRpb25zCgpgYGB7cn0KcXBsb3QoZWF0cywgZGF0YSA9IG1zbGVlcCkKcXBsb3Qoc2xlZXBfdG90YWwsIGRhdGEgPSBtc2xlZXAsIGJpbndpZHRoID0gMC41KQpxcGxvdChzbGVlcF9yZW0sIGRhdGEgPSBtc2xlZXAsIGJpbndpZHRoID0gMC41KQpxcGxvdChzbGVlcF90b3RhbCwgc2xlZXBfcmVtLCBkYXRhID0gbXNsZWVwKQpgYGAKCiMjIExvb2sgYXQgdGhlIGRhdGEKCmBgYHtyfQpsaWJyYXJ5KERUKQpkYXRhdGFibGUobXNsZWVwLCAKCWZpbHRlciA9ICd0b3AnLCBvcHRpb25zID0gbGlzdCgKICBwYWdlTGVuZ3RoID0gNTAsIGF1dG9XaWR0aCA9IFRSVUUKKSwgcm93bmFtZXMgPSBGKQpgYGAKCg==</div>
+<div id="rmd-source-code">IyBEZXNjcmlwdGl2ZXMgey50YWJzZXQgLnRhYnNldC1zdGlja3l9CgpgYGB7ciBtZXNzYWdlPUZBTFNFLCB3YXJuaW5nPUZBTFNFfQpzb3VyY2UoIjBfaGVscGVycy5SIikKYGBgCgojIyBMb2FkIGRhdGEKCmBgYHtyfQptc2xlZXAgPSByZWFkUkRTKCJtc2xlZXBfcHJvY2Vzc2VkLnJkcyIpCmBgYAoKIyMgRGVzY3JpcHRpdmVzIHsuYWN0aXZlfQpgYGB7ciB3YXJuaW5nPUZBTFNFfQptc2xlZXAgJT4lIAoJc2VsZWN0KHNsZWVwX3RvdGFsLCBzbGVlcF9yZW0sIGJyYWlud3QsIGJvZHl3dCkgJT4lIAoJc3VtbWFyaXNlX2FsbF92YXJzKCkKYGBgCgojIyBEaXN0cmlidXRpb25zCgpgYGB7cn0KcXBsb3QoZWF0cywgZGF0YSA9IG1zbGVlcCkKcXBsb3Qoc2xlZXBfdG90YWwsIGRhdGEgPSBtc2xlZXAsIGJpbndpZHRoID0gMC41KQpxcGxvdChzbGVlcF9yZW0sIGRhdGEgPSBtc2xlZXAsIGJpbndpZHRoID0gMC41KQpxcGxvdChzbGVlcF90b3RhbCwgc2xlZXBfcmVtLCBkYXRhID0gbXNsZWVwKQpgYGAKCiMjIExvb2sgYXQgdGhlIGRhdGEKCmBgYHtyfQpsaWJyYXJ5KERUKQpkYXRhdGFibGUobXNsZWVwLCAKCWZpbHRlciA9ICd0b3AnLCBvcHRpb25zID0gbGlzdCgKICBwYWdlTGVuZ3RoID0gNTAsIGF1dG9XaWR0aCA9IFRSVUUKKSwgcm93bmFtZXMgPSBGKQpgYGAKCg==</div>
 
 
 

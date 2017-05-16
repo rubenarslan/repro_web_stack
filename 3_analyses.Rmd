@@ -1,4 +1,4 @@
-# Wrangle data {.tabset .tabset-sticky}
+# Analyses {.tabset .tabset-sticky}
 
 ```{r message=FALSE, warning=FALSE}
 source("0_helpers.R")

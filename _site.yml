@@ -23,4 +23,5 @@ output:
     df_print: "tibble"
     code_download: true
     highlight: "zenburn"
+    css: styles.css
 exclude: ["packrat", "*.rda", "*.pdf", "*.dta", "*.csv", "geo", "item_tables", "*.csl", "*.bibtex"]
