@@ -44,14 +44,12 @@ Here's a few files you might want to edit:
 
 ## Releasing to Zenodo
 
-To release to Zenodo via the API, your repository needs to be public. Then, go to [Zenodo](https://zenodo.org/), connect your Github account, flip the switch next to the project name and make a release on Github. It will automatically be uploaded to Zenodo and you will get a DOI, like this [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.268888.svg)](https://doi.org/10.5281/zenodo.268888). I usually release the gh-pages branch, because that's the readable part.
+To release to Zenodo via the API, your repository needs to be public. Then, go to [Zenodo](https://zenodo.org/), connect your Github account, flip the switch next to the project name and make a release on Github. It will automatically be uploaded to Zenodo and you will get a DOI, like this [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.268888.svg)](https://doi.org/10.5281/zenodo.268888).
 
-If you don't want your R-code to be public, but only the HTML files, you can either: download a zip of a private release of your gh-pages branch and upload that to Zenodo by hand or you can make a separate, public repository for your HTML files and check this out in your _site directory.
+If you don't want your R-code to be public, but only the HTML files, you can either: zip the contents of the "docs" folder and upload that to Zenodo by hand or you can make a separate, public repository for your HTML files and check this out in your "docs" folder.
 
 ## Notes
 
-### Github branches
-The best way I've found to manage the resulting HTML-files is to keep them in a sub-directory (called _site by default) and to checkout the `gh-pages` branch for your repository in that directory as a submodule. I've set it up so that this the default for this project, so it should work out of the box.
+### Accessing the generated site on Github pages.
 
-I've found SourceTree handles Git with submodules in a quite user-friendly manner, RStudio not quite yet.  
-RStudio says you can also use a subdirectory called "docs/" in the master branch, instead of checking out gh-pages, but that doesn't appear to work if you're a regular Github user.
+After a bit of trial and error with my students, I think the best option for beginners to release the website you generated, is to serve it from the "docs" folder in your repository. You will have to go to your repository settings on Github and pick "docs" as the Github Pages option.
