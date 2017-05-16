@@ -1,4 +1,5 @@
 name: "reproducible-website-stack"
+output_dir: "docs"
 navbar:
   title: "Reproducible website stack"
   left:
