@@ -9,12 +9,6 @@ if (!exists("indent")) {
 summary(model)
 ```
 
-`r indent`# Marginal effect plot
-```{r marginal_effects}
-plot(effects::allEffects(model))
-```
-
-
 `r indent`# Diagnostics
 ```{r diagnostics}
 plot(model)

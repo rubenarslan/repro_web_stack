@@ -30,14 +30,10 @@ library(lubridate)
 library(stringr)
 #' extractor functions for models
 library(broom)
-#' marginal effects plots for regressions
-library(effects)
 #' grammar of graphics plots
 library(ggplot2)
 #' tidyverse: transform data wide to long
 library(tidyr)
-#' svg graphs
-library(svglite);
 #' tidyverse-style data wrangling. has a lot of naming conflicts, so always load last
 library(dplyr)
 
@@ -100,6 +96,14 @@ panderOptions("table.split.table", Inf)
 #'
 #' summarise regression using a "knitr component"
 regression_summary = function(model, indent = "##") {
-	formr::asis_knit_child("_regression_summary.Rmd")
+	model_name = deparse(substitute(model_name))
+	old_opt = options('knitr.duplicate.label')$knitr.duplicate.label
+	options(knitr.duplicate.label = 'allow')
+	on.exit(options(knitr.duplicate.label = old_opt))
+	options = list(
+		fig.path = paste0(knitr::opts_chunk$get("fig.path"), model_name, "_"),
+		cache.path = paste0(knitr::opts_chunk$get("cache.path"), model_name, "_")
+	)
+	formr::asis_knit_child("_regression_summary.Rmd", options = options)
 }
 
