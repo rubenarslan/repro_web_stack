@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+
+<title></title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/paper.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/navigation-1.1/codefolding.js"></script>
+<script src="site_libs/navigation-1.1/sourceembed.js"></script>
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; background-color: #303030; color: #cccccc; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; }
+td.sourceCode { padding-left: 5px; }
+pre, code { color: #cccccc; background-color: #303030; }
+code > span.kw { color: #f0dfaf; } /* Keyword */
+code > span.dt { color: #dfdfbf; } /* DataType */
+code > span.dv { color: #dcdccc; } /* DecVal */
+code > span.bn { color: #dca3a3; } /* BaseN */
+code > span.fl { color: #c0bed1; } /* Float */
+code > span.ch { color: #dca3a3; } /* Char */
+code > span.st { color: #cc9393; } /* String */
+code > span.co { color: #7f9f7f; } /* Comment */
+code > span.ot { color: #efef8f; } /* Other */
+code > span.al { color: #ffcfaf; } /* Alert */
+code > span.fu { color: #efef8f; } /* Function */
+code > span.er { color: #c3bf9f; } /* Error */
+code > span.wa { color: #7f9f7f; font-weight: bold; } /* Warning */
+code > span.cn { color: #dca3a3; font-weight: bold; } /* Constant */
+code > span.sc { color: #dca3a3; } /* SpecialChar */
+code > span.vs { color: #cc9393; } /* VerbatimString */
+code > span.ss { color: #cc9393; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { } /* Variable */
+code > span.cf { color: #f0dfaf; } /* ControlFlow */
+code > span.op { color: #f0efd0; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #ffcfaf; font-weight: bold; } /* Preprocessor */
+code > span.at { } /* Attribute */
+code > span.do { color: #7f9f7f; } /* Documentation */
+code > span.an { color: #7f9f7f; font-weight: bold; } /* Annotation */
+code > span.cv { color: #7f9f7f; font-weight: bold; } /* CommentVar */
+code > span.in { color: #7f9f7f; font-weight: bold; } /* Information */
+div.sourceCode {
+  overflow-x: visible;
+}
+</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+#rmd-source-code {
+  display: none;
+}
+</style>
+
+<link rel="stylesheet" href="styles.css" type="text/css" />
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 64px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 69px;
+  margin-top: -69px;
+}
+
+.section h2 {
+  padding-top: 69px;
+  margin-top: -69px;
+}
+.section h3 {
+  padding-top: 69px;
+  margin-top: -69px;
+}
+.section h4 {
+  padding-top: 69px;
+  margin-top: -69px;
+}
+.section h5 {
+  padding-top: 69px;
+  margin-top: -69px;
+}
+.section h6 {
+  padding-top: 69px;
+  margin-top: -69px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
+<script>
+$(document).ready(function () {
+  window.initializeSourceEmbed("README.md");
+  window.initializeCodeFolding("hide" === "show");
+});
+</script>
+
+
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Reproducible website stack</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Overview</a>
+</li>
+<li>
+  <a href="1_wrangle_data.html">Data wrangling</a>
+</li>
+<li>
+  <a href="2_descriptives.html">Descriptives</a>
+</li>
+<li>
+  <a href="3_analyses.html">Analyses</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://github.com/rubenarslan/repro_web_stack">
+    <span class="fa fa-github"></span>
+     
+    
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+<div class="btn-group pull-right">
+<button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu" style="min-width: 50px;">
+<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
+<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
+<li role="separator" class="divider"></li>
+<li><a id="rmd-download-source" href="#">Download Rmd</a></li>
+</ul>
+</div>
+
+
+
+
+</div>
+
+
+<div id="reproducible-web-stack" class="section level2">
+<h2>Reproducible web stack</h2>
+<p>This is a stack of tools that have served me well to generate reproducible websites. Some defaults were set to make things more seamless and I added some files to show it works. This is a fairly opinionated approach and your mileage may vary.</p>
+<p>The website generated from these scripts can be viewed at:<br />
+<a href="https://rubenarslan.github.io/repro_web_stack" class="uri">https://rubenarslan.github.io/repro_web_stack</a></p>
+</div>
+<div id="requirements-to-get-started" class="section level2">
+<h2>Requirements to get started</h2>
+<ul>
+<li><a href="https://www.rstudio.com/products/rstudio/download/">RStudio</a> 1.*</li>
+<li><a href="https://cran.rstudio.com/">R</a> 3.*</li>
+<li><a href="https://git-scm.com/book/en/v2/Getting-Started-Installing-Git">Git</a> (should already be installed on Mac OS Mavericks and above)</li>
+</ul>
+</div>
+<div id="set-up" class="section level2">
+<h2>Set up</h2>
+<p>Here’s how to set up:</p>
+<ol style="list-style-type: decimal">
+<li><p>(Optional, if you have a Github account already or are willing to create one). Fork this repository (top right).</p></li>
+<li><p>Open RStudio. In the top right menu “project menu”, click new project.</p></li>
+<li><p>In the dialog box that appears, click “Version Control”. Copy-paste the URL from your repository (it will be <code>https://github.com/rubenarslan/repro_web_stack</code> except with your username, if you forked it). Create the project (you can pick a different name if you’d like).</p></li>
+<li><p>In RStudio packrat should start installing packages, if not, consider running</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">packrat<span class="op">::</span><span class="kw">restore</span>() <span class="co"># this should run by default if you open the project in an up-to-date RStudio version</span>
+packrat<span class="op">::</span><span class="kw">disable</span>() <span class="co"># because packrat is a bit immature, it&#39;s probably easier to only turn it on at the end, when you archive your project. It may make sense to put up with the immaturities if you&#39;re working on a lot of projects in parallel.</span></code></pre></div></li>
+<li><p>Now try whether you can generate the website by clicking “Knit” in the file <code>1_wrangle_data.Rmd</code>, then try the other files, then modify them to suit your project.</p></li>
+</ol>
+</div>
+<div id="configuration" class="section level2">
+<h2>Configuration</h2>
+<p>Here’s a few files you might want to edit:</p>
+<ol style="list-style-type: decimal">
+<li><p><code>.zenodo.json</code> this file contains the metadata that will be used to describe your releases on Zenodo. Add the project name and the authors in this file.</p></li>
+<li><p><code>_site.yml</code> here you can set up a few global settings for how your site should look like. <a href="http://rmarkdown.rstudio.com/rmarkdown_websites.html">More information</a>.</p></li>
+<li><p><code>0_helpers.R</code> - here I load a few packages that I tend to always use. I think it makes sense to load a basic set of packages in this helper file and include it everywhere. Load order matters hugely in R (especially when you use dplyr, which has lots of name conflicts with other packages) and it can simplify things for you, when you know the load order. I’ve also set a few defaults here that make sense to me.</p></li>
+<li><p>The name of the <code>.Rproj</code> file to something descriptive of your project (and correspondingly, the name on Github).</p></li>
+</ol>
+</div>
+<div id="releasing-to-zenodo" class="section level2">
+<h2>Releasing to Zenodo</h2>
+<p>To release to Zenodo via the API, your repository needs to be public. Then, go to <a href="https://zenodo.org/">Zenodo</a>, connect your Github account, flip the switch next to the project name and make a release on Github. It will automatically be uploaded to Zenodo and you will get a DOI, like this <a href="https://doi.org/10.5281/zenodo.268888"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.268888.svg" alt="DOI" /></a>.</p>
+<p>If you don’t want your R-code to be public, but only the HTML files, you can either: zip the contents of the “docs” folder and upload that to Zenodo by hand or you can make a separate, public repository for your HTML files and check this out in your “docs” folder.</p>
+</div>
+<div id="notes" class="section level2">
+<h2>Notes</h2>
+<div id="accessing-the-generated-site-on-github-pages." class="section level3">
+<h3>Accessing the generated site on Github pages.</h3>
+<p>After a bit of trial and error with my students, I think the best option for beginners to release the website you generated, is to serve it from the “docs” folder in your repository. You will have to go to your repository settings on Github and pick “docs” as the Github Pages option.</p>
+</div>
+</div>
+
+<div id="rmd-source-code">IyMgUmVwcm9kdWNpYmxlIHdlYiBzdGFjawoKVGhpcyBpcyBhIHN0YWNrIG9mIHRvb2xzIHRoYXQgaGF2ZSBzZXJ2ZWQgbWUgd2VsbCB0byBnZW5lcmF0ZSByZXByb2R1Y2libGUgd2Vic2l0ZXMuClNvbWUgZGVmYXVsdHMgd2VyZSBzZXQgdG8gbWFrZSB0aGluZ3MgbW9yZSBzZWFtbGVzcyBhbmQgSSBhZGRlZCBzb21lIGZpbGVzIHRvIHNob3cgaXQgd29ya3MuIFRoaXMgaXMgYSBmYWlybHkgb3BpbmlvbmF0ZWQgYXBwcm9hY2ggYW5kIHlvdXIgbWlsZWFnZSBtYXkgdmFyeS4KClRoZSB3ZWJzaXRlIGdlbmVyYXRlZCBmcm9tIHRoZXNlIHNjcmlwdHMgY2FuIGJlIHZpZXdlZCBhdDogIApodHRwczovL3J1YmVuYXJzbGFuLmdpdGh1Yi5pby9yZXByb193ZWJfc3RhY2sKCiMjIFJlcXVpcmVtZW50cyB0byBnZXQgc3RhcnRlZAoKLSBbUlN0dWRpb10oaHR0cHM6Ly93d3cucnN0dWRpby5jb20vcHJvZHVjdHMvcnN0dWRpby9kb3dubG9hZC8pIDEuKgotIFtSXShodHRwczovL2NyYW4ucnN0dWRpby5jb20vKSAzLioKLSBbR2l0XShodHRwczovL2dpdC1zY20uY29tL2Jvb2svZW4vdjIvR2V0dGluZy1TdGFydGVkLUluc3RhbGxpbmctR2l0KSAoc2hvdWxkIGFscmVhZHkgYmUgaW5zdGFsbGVkIG9uIE1hYyBPUyBNYXZlcmlja3MgYW5kIGFib3ZlKQoKIyMgU2V0IHVwCkhlcmUncyBob3cgdG8gc2V0IHVwOgoKMS4gKE9wdGlvbmFsLCBpZiB5b3UgaGF2ZSBhIEdpdGh1YiBhY2NvdW50IGFscmVhZHkgb3IgYXJlIHdpbGxpbmcgdG8gY3JlYXRlIG9uZSkuIEZvcmsgdGhpcyByZXBvc2l0b3J5ICh0b3AgcmlnaHQpLgoKMi4gT3BlbiBSU3R1ZGlvLiBJbiB0aGUgdG9wIHJpZ2h0IG1lbnUgInByb2plY3QgbWVudSIsIGNsaWNrIG5ldyBwcm9qZWN0LgoKMy4gSW4gdGhlIGRpYWxvZyBib3ggdGhhdCBhcHBlYXJzLCBjbGljayAiVmVyc2lvbiBDb250cm9sIi4gQ29weS1wYXN0ZSB0aGUgVVJMIGZyb20geW91ciByZXBvc2l0b3J5IChpdCB3aWxsIGJlIGBodHRwczovL2dpdGh1Yi5jb20vcnViZW5hcnNsYW4vcmVwcm9fd2ViX3N0YWNrYCBleGNlcHQgd2l0aCB5b3VyIHVzZXJuYW1lLCBpZiB5b3UgZm9ya2VkIGl0KS4gQ3JlYXRlIHRoZSBwcm9qZWN0ICh5b3UgY2FuIHBpY2sgYSBkaWZmZXJlbnQgbmFtZSBpZiB5b3UnZCBsaWtlKS4KCjMuIEluIFJTdHVkaW8gcGFja3JhdCBzaG91bGQgc3RhcnQgaW5zdGFsbGluZyBwYWNrYWdlcywgaWYgbm90LCBjb25zaWRlciBydW5uaW5nCgoJYGBgcgoJcGFja3JhdDo6cmVzdG9yZSgpICMgdGhpcyBzaG91bGQgcnVuIGJ5IGRlZmF1bHQgaWYgeW91IG9wZW4gdGhlIHByb2plY3QgaW4gYW4gdXAtdG8tZGF0ZSBSU3R1ZGlvIHZlcnNpb24KCXBhY2tyYXQ6OmRpc2FibGUoKSAjIGJlY2F1c2UgcGFja3JhdCBpcyBhIGJpdCBpbW1hdHVyZSwgaXQncyBwcm9iYWJseSBlYXNpZXIgdG8gb25seSB0dXJuIGl0IG9uIGF0IHRoZSBlbmQsIHdoZW4geW91IGFyY2hpdmUgeW91ciBwcm9qZWN0LiBJdCBtYXkgbWFrZSBzZW5zZSB0byBwdXQgdXAgd2l0aCB0aGUgaW1tYXR1cml0aWVzIGlmIHlvdSdyZSB3b3JraW5nIG9uIGEgbG90IG9mIHByb2plY3RzIGluIHBhcmFsbGVsLgoJYGBgCgo1LiBOb3cgdHJ5IHdoZXRoZXIgeW91IGNhbiBnZW5lcmF0ZSB0aGUgd2Vic2l0ZSBieSBjbGlja2luZyAiS25pdCIgaW4gdGhlIGZpbGUgYDFfd3JhbmdsZV9kYXRhLlJtZGAsIHRoZW4gdHJ5IHRoZSBvdGhlciBmaWxlcywgdGhlbiBtb2RpZnkgdGhlbSB0byBzdWl0IHlvdXIgcHJvamVjdC4KCiMjIENvbmZpZ3VyYXRpb24KCkhlcmUncyBhIGZldyBmaWxlcyB5b3UgbWlnaHQgd2FudCB0byBlZGl0OgoKMS4gYC56ZW5vZG8uanNvbmAgdGhpcyBmaWxlIGNvbnRhaW5zIHRoZSBtZXRhZGF0YSB0aGF0IHdpbGwgYmUgdXNlZCB0byBkZXNjcmliZSB5b3VyIHJlbGVhc2VzIG9uIFplbm9kby4gQWRkIHRoZSBwcm9qZWN0IG5hbWUgYW5kIHRoZSBhdXRob3JzIGluIHRoaXMgZmlsZS4KCjIuIGBfc2l0ZS55bWxgIGhlcmUgeW91IGNhbiBzZXQgdXAgYSBmZXcgZ2xvYmFsIHNldHRpbmdzIGZvciBob3cgeW91ciBzaXRlIHNob3VsZCBsb29rIGxpa2UuIFtNb3JlIGluZm9ybWF0aW9uXShodHRwOi8vcm1hcmtkb3duLnJzdHVkaW8uY29tL3JtYXJrZG93bl93ZWJzaXRlcy5odG1sKS4KCjMuIGAwX2hlbHBlcnMuUmAgLSBoZXJlIEkgbG9hZCBhIGZldyBwYWNrYWdlcyB0aGF0IEkgdGVuZCB0byBhbHdheXMgdXNlLiBJIHRoaW5rIGl0IG1ha2VzIHNlbnNlIHRvIGxvYWQgYSBiYXNpYyBzZXQgb2YgcGFja2FnZXMgaW4gdGhpcyBoZWxwZXIgZmlsZSBhbmQgaW5jbHVkZSBpdCBldmVyeXdoZXJlLiBMb2FkIG9yZGVyIG1hdHRlcnMgaHVnZWx5IGluIFIgKGVzcGVjaWFsbHkgd2hlbiB5b3UgdXNlIGRwbHlyLCB3aGljaCBoYXMgbG90cyBvZiBuYW1lIGNvbmZsaWN0cyB3aXRoIG90aGVyIHBhY2thZ2VzKSBhbmQgaXQgY2FuIHNpbXBsaWZ5IHRoaW5ncyBmb3IgeW91LCB3aGVuIHlvdSBrbm93IHRoZSBsb2FkIG9yZGVyLiBJJ3ZlIGFsc28gc2V0IGEgZmV3IGRlZmF1bHRzIGhlcmUgdGhhdCBtYWtlIHNlbnNlIHRvIG1lLgoKNC4gVGhlIG5hbWUgb2YgdGhlIGAuUnByb2pgIGZpbGUgdG8gc29tZXRoaW5nIGRlc2NyaXB0aXZlIG9mIHlvdXIgcHJvamVjdCAoYW5kIGNvcnJlc3BvbmRpbmdseSwgdGhlIG5hbWUgb24gR2l0aHViKS4KCiMjIFJlbGVhc2luZyB0byBaZW5vZG8KClRvIHJlbGVhc2UgdG8gWmVub2RvIHZpYSB0aGUgQVBJLCB5b3VyIHJlcG9zaXRvcnkgbmVlZHMgdG8gYmUgcHVibGljLiBUaGVuLCBnbyB0byBbWmVub2RvXShodHRwczovL3plbm9kby5vcmcvKSwgY29ubmVjdCB5b3VyIEdpdGh1YiBhY2NvdW50LCBmbGlwIHRoZSBzd2l0Y2ggbmV4dCB0byB0aGUgcHJvamVjdCBuYW1lIGFuZCBtYWtlIGEgcmVsZWFzZSBvbiBHaXRodWIuIEl0IHdpbGwgYXV0b21hdGljYWxseSBiZSB1cGxvYWRlZCB0byBaZW5vZG8gYW5kIHlvdSB3aWxsIGdldCBhIERPSSwgbGlrZSB0aGlzIFshW0RPSV0oaHR0cHM6Ly96ZW5vZG8ub3JnL2JhZGdlL0RPSS8xMC41MjgxL3plbm9kby4yNjg4ODguc3ZnKV0oaHR0cHM6Ly9kb2kub3JnLzEwLjUyODEvemVub2RvLjI2ODg4OCkuCgpJZiB5b3UgZG9uJ3Qgd2FudCB5b3VyIFItY29kZSB0byBiZSBwdWJsaWMsIGJ1dCBvbmx5IHRoZSBIVE1MIGZpbGVzLCB5b3UgY2FuIGVpdGhlcjogemlwIHRoZSBjb250ZW50cyBvZiB0aGUgImRvY3MiIGZvbGRlciBhbmQgdXBsb2FkIHRoYXQgdG8gWmVub2RvIGJ5IGhhbmQgb3IgeW91IGNhbiBtYWtlIGEgc2VwYXJhdGUsIHB1YmxpYyByZXBvc2l0b3J5IGZvciB5b3VyIEhUTUwgZmlsZXMgYW5kIGNoZWNrIHRoaXMgb3V0IGluIHlvdXIgImRvY3MiIGZvbGRlci4KCiMjIE5vdGVzCgojIyMgQWNjZXNzaW5nIHRoZSBnZW5lcmF0ZWQgc2l0ZSBvbiBHaXRodWIgcGFnZXMuCgpBZnRlciBhIGJpdCBvZiB0cmlhbCBhbmQgZXJyb3Igd2l0aCBteSBzdHVkZW50cywgSSB0aGluayB0aGUgYmVzdCBvcHRpb24gZm9yIGJlZ2lubmVycyB0byByZWxlYXNlIHRoZSB3ZWJzaXRlIHlvdSBnZW5lcmF0ZWQsIGlzIHRvIHNlcnZlIGl0IGZyb20gdGhlICJkb2NzIiBmb2xkZXIgaW4geW91ciByZXBvc2l0b3J5LiBZb3Ugd2lsbCBoYXZlIHRvIGdvIHRvIHlvdXIgcmVwb3NpdG9yeSBzZXR0aW5ncyBvbiBHaXRodWIgYW5kIHBpY2sgImRvY3MiIGFzIHRoZSBHaXRodWIgUGFnZXMgb3B0aW9uLgo=</div>
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

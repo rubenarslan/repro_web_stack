@@ -21,7 +21,6 @@
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <script src="site_libs/navigation-1.1/codefolding.js"></script>
-<script src="site_libs/navigation-1.1/FileSaver.min.js"></script>
 <script src="site_libs/navigation-1.1/sourceembed.js"></script>
 <link href="site_libs/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet" />
 
@@ -277,25 +276,23 @@ $(document).ready(function () {
 </div>
 <div id="basic-model" class="section level2 tabset tabset-sticky">
 <h2>Basic model</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">m1 =<span class="st"> </span><span class="kw">lm</span>(sleep_rem ~<span class="st"> </span>sleep_total, <span class="dt">data =</span> msleep)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">m1 =<span class="st"> </span><span class="kw">lm</span>(sleep_rem <span class="op">~</span><span class="st"> </span>sleep_total, <span class="dt">data =</span> msleep)
 <span class="kw">regression_summary</span>(m1)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">if (!<span class="kw">exists</span>(<span class="st">&quot;indent&quot;</span>)) {
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">if</span> (<span class="op">!</span><span class="kw">exists</span>(<span class="st">&quot;indent&quot;</span>)) {
     indent =<span class="st"> &#39;##&#39;</span> <span class="co"># ugly hack so _regression_summary can be &quot;spun&quot; (variables included via `r ` have to be available)</span>
 }</code></pre></div>
 <div id="summary" class="section level3">
 <h3>Summary</h3>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(model)</code></pre></div>
-<table style="width:86%;">
+<table style="width:62%;">
 <colgroup>
-<col width="25%" />
 <col width="15%" />
 <col width="18%" />
 <col width="13%" />
-<col width="13%" />
+<col width="15%" />
 </colgroup>
 <thead>
 <tr class="header">
-<th align="center"> </th>
 <th align="center">Estimate</th>
 <th align="center">Std. Error</th>
 <th align="center">t value</th>
@@ -304,27 +301,25 @@ $(document).ready(function () {
 </thead>
 <tbody>
 <tr class="odd">
-<td align="center"><strong>sleep_total</strong></td>
-<td align="center">0.2153</td>
-<td align="center">0.02459</td>
-<td align="center">8.756</td>
-<td align="center">2.916e-12</td>
-</tr>
-<tr class="even">
-<td align="center"><strong>(Intercept)</strong></td>
 <td align="center">-0.3613</td>
 <td align="center">0.2783</td>
 <td align="center">-1.298</td>
 <td align="center">0.1993</td>
 </tr>
+<tr class="even">
+<td align="center">0.2153</td>
+<td align="center">0.02459</td>
+<td align="center">8.756</td>
+<td align="center">2.916e-12</td>
+</tr>
 </tbody>
 </table>
-<table style="width:85%;">
+<table style="width:86%;">
 <caption>Fitting linear model: sleep_rem ~ sleep_total</caption>
 <colgroup>
 <col width="20%" />
 <col width="30%" />
-<col width="11%" />
+<col width="12%" />
 <col width="22%" />
 </colgroup>
 <thead>
@@ -345,38 +340,31 @@ $(document).ready(function () {
 </tbody>
 </table>
 </div>
-<div id="marginal-effect-plot" class="section level3">
-<h3>Marginal effect plot</h3>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(effects::<span class="kw">allEffects</span>(model))</code></pre></div>
-<p><img src="3_analyses_files/figure-html/marginal_effects-1.svg" width="672" /></p>
-</div>
 <div id="diagnostics" class="section level3">
 <h3>Diagnostics</h3>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(model)</code></pre></div>
-<p><img src="3_analyses_files/figure-html/diagnostics-1.svg" width="672" /><img src="3_analyses_files/figure-html/diagnostics-2.svg" width="672" /><img src="3_analyses_files/figure-html/diagnostics-3.svg" width="672" /><img src="3_analyses_files/figure-html/diagnostics-4.svg" width="672" /></p>
+<p><img src="3_analyses_files/figure-html/model_name_diagnostics-1.png" width="672" /><img src="3_analyses_files/figure-html/model_name_diagnostics-2.png" width="672" /><img src="3_analyses_files/figure-html/model_name_diagnostics-3.png" width="672" /><img src="3_analyses_files/figure-html/model_name_diagnostics-4.png" width="672" /></p>
 </div>
 </div>
 <div id="super-advanced-model" class="section level2 active tabset tabset-sticky">
 <h2>Super-advanced model</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">m2 =<span class="st"> </span><span class="kw">lm</span>(sleep_rem ~<span class="st"> </span>sleep_total +<span class="st"> </span><span class="kw">log</span>(brainwt) +<span class="st"> </span><span class="kw">log</span>(bodywt) +<span class="st"> </span>eats, <span class="dt">data =</span> msleep)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">m2 =<span class="st"> </span><span class="kw">lm</span>(sleep_rem <span class="op">~</span><span class="st"> </span>sleep_total <span class="op">+</span><span class="st"> </span><span class="kw">log</span>(brainwt) <span class="op">+</span><span class="st"> </span><span class="kw">log</span>(bodywt) <span class="op">+</span><span class="st"> </span>eats, <span class="dt">data =</span> msleep)
 <span class="kw">regression_summary</span>(m2)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">if (!<span class="kw">exists</span>(<span class="st">&quot;indent&quot;</span>)) {
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">if</span> (<span class="op">!</span><span class="kw">exists</span>(<span class="st">&quot;indent&quot;</span>)) {
     indent =<span class="st"> &#39;##&#39;</span> <span class="co"># ugly hack so _regression_summary can be &quot;spun&quot; (variables included via `r ` have to be available)</span>
 }</code></pre></div>
 <div id="summary-1" class="section level3">
 <h3>Summary</h3>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(model)</code></pre></div>
-<table style="width:88%;">
+<table style="width:64%;">
 <colgroup>
-<col width="26%" />
 <col width="15%" />
 <col width="18%" />
 <col width="13%" />
-<col width="13%" />
+<col width="16%" />
 </colgroup>
 <thead>
 <tr class="header">
-<th align="center"> </th>
 <th align="center">Estimate</th>
 <th align="center">Std. Error</th>
 <th align="center">t value</th>
@@ -385,62 +373,55 @@ $(document).ready(function () {
 </thead>
 <tbody>
 <tr class="odd">
-<td align="center"><strong>sleep_total</strong></td>
-<td align="center">0.1879</td>
-<td align="center">0.03814</td>
-<td align="center">4.926</td>
-<td align="center">0.00001886</td>
-</tr>
-<tr class="even">
-<td align="center"><strong>log(brainwt)</strong></td>
-<td align="center">-0.3747</td>
-<td align="center">0.1946</td>
-<td align="center">-1.926</td>
-<td align="center">0.06203</td>
-</tr>
-<tr class="odd">
-<td align="center"><strong>log(bodywt)</strong></td>
-<td align="center">0.3648</td>
-<td align="center">0.1527</td>
-<td align="center">2.39</td>
-<td align="center">0.02223</td>
-</tr>
-<tr class="even">
-<td align="center"><strong>eatsplants</strong></td>
-<td align="center">-0.5707</td>
-<td align="center">0.3218</td>
-<td align="center">-1.773</td>
-<td align="center">0.08464</td>
-</tr>
-<tr class="odd">
-<td align="center"><strong>eatsinsects</strong></td>
-<td align="center">0.3757</td>
-<td align="center">0.486</td>
-<td align="center">0.7731</td>
-<td align="center">0.4445</td>
-</tr>
-<tr class="even">
-<td align="center"><strong>eatsmeat</strong></td>
-<td align="center">0.2837</td>
-<td align="center">0.3864</td>
-<td align="center">0.7344</td>
-<td align="center">0.4675</td>
-</tr>
-<tr class="odd">
-<td align="center"><strong>(Intercept)</strong></td>
 <td align="center">-1.731</td>
 <td align="center">0.9195</td>
 <td align="center">-1.883</td>
 <td align="center">0.06787</td>
 </tr>
+<tr class="even">
+<td align="center">0.1879</td>
+<td align="center">0.03814</td>
+<td align="center">4.926</td>
+<td align="center">0.00001886</td>
+</tr>
+<tr class="odd">
+<td align="center">-0.3747</td>
+<td align="center">0.1946</td>
+<td align="center">-1.926</td>
+<td align="center">0.06203</td>
+</tr>
+<tr class="even">
+<td align="center">0.3648</td>
+<td align="center">0.1527</td>
+<td align="center">2.39</td>
+<td align="center">0.02223</td>
+</tr>
+<tr class="odd">
+<td align="center">-0.5707</td>
+<td align="center">0.3218</td>
+<td align="center">-1.773</td>
+<td align="center">0.08464</td>
+</tr>
+<tr class="even">
+<td align="center">0.3757</td>
+<td align="center">0.486</td>
+<td align="center">0.7731</td>
+<td align="center">0.4445</td>
+</tr>
+<tr class="odd">
+<td align="center">0.2837</td>
+<td align="center">0.3864</td>
+<td align="center">0.7344</td>
+<td align="center">0.4675</td>
+</tr>
 </tbody>
 </table>
-<table style="width:85%;">
+<table style="width:86%;">
 <caption>Fitting linear model: sleep_rem ~ sleep_total + log(brainwt) + log(bodywt) + eats</caption>
 <colgroup>
 <col width="20%" />
 <col width="30%" />
-<col width="11%" />
+<col width="12%" />
 <col width="22%" />
 </colgroup>
 <thead>
@@ -461,15 +442,10 @@ $(document).ready(function () {
 </tbody>
 </table>
 </div>
-<div id="marginal-effect-plot-1" class="section level3">
-<h3>Marginal effect plot</h3>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(effects::<span class="kw">allEffects</span>(model))</code></pre></div>
-<p><img src="3_analyses_files/figure-html/marginal_effects-8-1.svg" width="672" /></p>
-</div>
 <div id="diagnostics-1" class="section level3">
 <h3>Diagnostics</h3>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(model)</code></pre></div>
-<p><img src="3_analyses_files/figure-html/diagnostics-9-1.svg" width="672" /><img src="3_analyses_files/figure-html/diagnostics-9-2.svg" width="672" /><img src="3_analyses_files/figure-html/diagnostics-9-3.svg" width="672" /><img src="3_analyses_files/figure-html/diagnostics-9-4.svg" width="672" /></p>
+<p><img src="3_analyses_files/figure-html/model_name_diagnostics-8-1.png" width="672" /><img src="3_analyses_files/figure-html/model_name_diagnostics-8-2.png" width="672" /><img src="3_analyses_files/figure-html/model_name_diagnostics-8-3.png" width="672" /><img src="3_analyses_files/figure-html/model_name_diagnostics-8-4.png" width="672" /></p>
 </div>
 </div>
 <div id="summary-2" class="section level2">
@@ -477,12 +453,12 @@ $(document).ready(function () {
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">bind_rows</span>(
     <span class="st">&quot;Model 1&quot;</span> =<span class="st"> </span><span class="kw">glance</span>(m1), 
     <span class="st">&quot;Model 2&quot;</span> =<span class="st"> </span><span class="kw">glance</span>(m2),
-<span class="dt">.id =</span> <span class="st">&quot;Model&quot;</span>) %&gt;%<span class="st"> </span><span class="kw">arrange</span>(AIC) %&gt;%<span class="st"> </span><span class="kw">select</span>(Model, adj.r.squared, BIC, deviance, df.residual)</code></pre></div>
-<table style="width:75%;">
+<span class="dt">.id =</span> <span class="st">&quot;Model&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">arrange</span>(AIC) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(Model, adj.r.squared, BIC, deviance, df.residual)</code></pre></div>
+<table style="width:81%;">
 <colgroup>
-<col width="11%" />
+<col width="13%" />
 <col width="22%" />
-<col width="8%" />
+<col width="11%" />
 <col width="15%" />
 <col width="18%" />
 </colgroup>

@@ -21,7 +21,6 @@
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <script src="site_libs/navigation-1.1/codefolding.js"></script>
-<script src="site_libs/navigation-1.1/FileSaver.min.js"></script>
 <script src="site_libs/navigation-1.1/sourceembed.js"></script>
 <link href="site_libs/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet" />
 
@@ -268,23 +267,19 @@ $(document).ready(function () {
 </div>
 
 
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">if (!<span class="kw">exists</span>(<span class="st">&quot;indent&quot;</span>)) {
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">if</span> (<span class="op">!</span><span class="kw">exists</span>(<span class="st">&quot;indent&quot;</span>)) {
     indent =<span class="st"> &#39;##&#39;</span> <span class="co"># ugly hack so _regression_summary can be &quot;spun&quot; (variables included via `r ` have to be available)</span>
 }</code></pre></div>
 <div id="summary" class="section level3">
 <h3>Summary</h3>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(model)</code></pre></div>
 </div>
-<div id="marginal-effect-plot" class="section level3">
-<h3>Marginal effect plot</h3>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(effects::<span class="kw">allEffects</span>(model))</code></pre></div>
-</div>
 <div id="diagnostics" class="section level3">
 <h3>Diagnostics</h3>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(model)</code></pre></div>
 </div>
 
-<div id="rmd-source-code">YGBge3Igc2V0dXAsZXZhbD1UUlVFfQppZiAoIWV4aXN0cygiaW5kZW50IikpIHsKCWluZGVudCA9ICcjIycgIyB1Z2x5IGhhY2sgc28gX3JlZ3Jlc3Npb25fc3VtbWFyeSBjYW4gYmUgInNwdW4iICh2YXJpYWJsZXMgaW5jbHVkZWQgdmlhIGByIGAgaGF2ZSB0byBiZSBhdmFpbGFibGUpCn0KYGBgCgpgciBpbmRlbnRgIyBTdW1tYXJ5CmBgYHtyIHN1bW1hcnl9CnN1bW1hcnkobW9kZWwpCmBgYAoKYHIgaW5kZW50YCMgTWFyZ2luYWwgZWZmZWN0IHBsb3QKYGBge3IgbWFyZ2luYWxfZWZmZWN0c30KcGxvdChlZmZlY3RzOjphbGxFZmZlY3RzKG1vZGVsKSkKYGBgCgoKYHIgaW5kZW50YCMgRGlhZ25vc3RpY3MKYGBge3IgZGlhZ25vc3RpY3N9CnBsb3QobW9kZWwpCmBgYAo=</div>
+<div id="rmd-source-code">YGBge3Igc2V0dXAsZXZhbD1UUlVFfQppZiAoIWV4aXN0cygiaW5kZW50IikpIHsKCWluZGVudCA9ICcjIycgIyB1Z2x5IGhhY2sgc28gX3JlZ3Jlc3Npb25fc3VtbWFyeSBjYW4gYmUgInNwdW4iICh2YXJpYWJsZXMgaW5jbHVkZWQgdmlhIGByIGAgaGF2ZSB0byBiZSBhdmFpbGFibGUpCn0KYGBgCgpgciBpbmRlbnRgIyBTdW1tYXJ5CmBgYHtyIHN1bW1hcnl9CnN1bW1hcnkobW9kZWwpCmBgYAoKYHIgaW5kZW50YCMgRGlhZ25vc3RpY3MKYGBge3IgZGlhZ25vc3RpY3N9CnBsb3QobW9kZWwpCmBgYAo=</div>
 
 
 

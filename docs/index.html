@@ -21,7 +21,6 @@
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <script src="site_libs/navigation-1.1/codefolding.js"></script>
-<script src="site_libs/navigation-1.1/FileSaver.min.js"></script>
 <script src="site_libs/navigation-1.1/sourceembed.js"></script>
 <link href="site_libs/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet" />
 
@@ -292,37 +291,39 @@ $(document).ready(function () {
 <div id="session-info" class="section level5">
 <h5>Session info</h5>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Make packrat bibliography</span>
-<span class="kw">packrat_bibliography</span>(<span class="dt">overwrite_bib =</span> <span class="ot">TRUE</span>, <span class="dt">silent =</span> <span class="ot">TRUE</span>)
-<span class="co"># Turn the .R files into .Rmd files, turn those into .html, remove the .Rmd files</span>
+<span class="kw">packrat_bibliography</span>(<span class="dt">overwrite_bib =</span> <span class="ot">TRUE</span>, <span class="dt">silent =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<pre><code>## Warning in utils::citation(pkg_name): no date field in DESCRIPTION file of package &#39;pillar&#39;</code></pre>
+<pre><code>## Warning in utils::citation(pkg_name): could not determine year for &#39;pillar&#39; from package DESCRIPTION file</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Turn the .R files into .Rmd files, turn those into .html, remove the .Rmd files</span>
 <span class="kw">spin_R_files_to_site_html</span>()
 <span class="kw">sessionInfo</span>()</code></pre></div>
-<p><strong>R version 3.3.2 (2016-10-31)</strong></p>
-<p>**<a href="Platform:**" class="uri">Platform:**</a> x86_64-apple-darwin13.4.0 (64-bit)</p>
+<p><strong>R version 3.4.3 (2017-11-30)</strong></p>
+<p>**<a href="Platform:**" class="uri">Platform:**</a> x86_64-apple-darwin15.6.0 (64-bit)</p>
 <p><strong>locale:</strong> en_US.UTF-8||en_US.UTF-8||en_US.UTF-8||C||en_US.UTF-8||en_US.UTF-8</p>
 <p><strong>attached base packages:</strong> <em>stats</em>, <em>graphics</em>, <em>grDevices</em>, <em>utils</em>, <em>datasets</em>, <em>methods</em> and <em>base</em></p>
-<p><strong>other attached packages:</strong> <em>dplyr(v.0.5.0)</em>, <em>svglite(v.1.2.0)</em>, <em>tidyr(v.0.6.2)</em>, <em>ggplot2(v.2.2.1)</em>, <em>effects(v.3.1-2)</em>, <em>broom(v.0.4.2)</em>, <em>stringr(v.1.2.0)</em>, <em>lubridate(v.1.6.0)</em>, <em>pander(v.0.6.0)</em>, <em>formr(v.0.6.11)</em>, <em>knitr(v.1.15.1)</em> and <em>rmarkdown(v.1.5)</em></p>
-<p><strong>loaded via a namespace (and not attached):</strong> <em>Rcpp(v.0.12.10)</em>, <em>nloptr(v.1.0.4)</em>, <em>plyr(v.1.8.4)</em>, <em>base64enc(v.0.1-3)</em>, <em>tools(v.3.3.2)</em>, <em>digest(v.0.6.12)</em>, <em>lme4(v.1.1-13)</em>, <em>packrat(v.0.4.8-1)</em>, <em>evaluate(v.0.10)</em>, <em>tibble(v.1.3.0)</em>, <em>gtable(v.0.2.0)</em>, <em>nlme(v.3.1-131)</em>, <em>lattice(v.0.20-35)</em>, <em>Matrix(v.1.2-8)</em>, <em>psych(v.1.7.3.21)</em>, <em>DBI(v.0.6-1)</em>, <em>yaml(v.2.1.14)</em>, <em>parallel(v.3.3.2)</em>, <em>gdtools(v.0.1.4)</em>, <em>nnet(v.7.3-12)</em>, <em>rprojroot(v.1.2)</em>, <em>grid(v.3.3.2)</em>, <em>R6(v.2.2.1)</em>, <em>foreign(v.0.8-68)</em>, <em>minqa(v.1.2.4)</em>, <em>reshape2(v.1.4.2)</em>, <em>magrittr(v.1.5)</em>, <em>backports(v.1.0.5)</em>, <em>scales(v.0.4.1)</em>, <em>htmltools(v.0.3.6)</em>, <em>splines(v.3.3.2)</em>, <em>MASS(v.7.3-47)</em>, <em>assertthat(v.0.2.0)</em>, <em>mnormt(v.1.5-5)</em>, <em>colorspace(v.1.3-2)</em>, <em>stringi(v.1.1.5)</em>, <em>lazyeval(v.0.2.0)</em> and <em>munsell(v.0.4.3)</em></p>
+<p><strong>other attached packages:</strong> <em>DT(v.0.2)</em>, <em>bindrcpp(v.0.2)</em>, <em>dplyr(v.0.7.4)</em>, <em>tidyr(v.0.7.2)</em>, <em>ggplot2(v.2.2.1)</em>, <em>broom(v.0.4.3)</em>, <em>stringr(v.1.2.0)</em>, <em>lubridate(v.1.7.1)</em>, <em>pander(v.0.6.1)</em>, <em>formr(v.0.7.1)</em>, <em>knitr(v.1.18)</em> and <em>rmarkdown(v.1.8)</em></p>
+<p><strong>loaded via a namespace (and not attached):</strong> <em>Rcpp(v.0.12.14)</em>, <em>pillar(v.1.0.99.9000)</em>, <em>compiler(v.3.4.3)</em>, <em>plyr(v.1.8.4)</em>, <em>bindr(v.0.1)</em>, <em>base64enc(v.0.1-3)</em>, <em>tools(v.3.4.3)</em>, <em>digest(v.0.6.13)</em>, <em>packrat(v.0.4.8-1)</em>, <em>jsonlite(v.1.5)</em>, <em>evaluate(v.0.10.1)</em>, <em>tibble(v.1.4.1)</em>, <em>gtable(v.0.2.0)</em>, <em>nlme(v.3.1-131)</em>, <em>lattice(v.0.20-35)</em>, <em>pkgconfig(v.2.0.1)</em>, <em>rlang(v.0.1.6)</em>, <em>psych(v.1.7.3.21)</em>, <em>parallel(v.3.4.3)</em>, <em>yaml(v.2.1.16)</em>, <em>htmlwidgets(v.0.9)</em>, <em>tidyselect(v.0.2.3)</em>, <em>rprojroot(v.1.2)</em>, <em>grid(v.3.4.3)</em>, <em>glue(v.1.2.0)</em>, <em>R6(v.2.2.2)</em>, <em>foreign(v.0.8-69)</em>, <em>reshape2(v.1.4.3)</em>, <em>purrr(v.0.2.4)</em>, <em>magrittr(v.1.5)</em>, <em>backports(v.1.1.2)</em>, <em>scales(v.0.5.0)</em>, <em>htmltools(v.0.3.6)</em>, <em>assertthat(v.0.2.0)</em>, <em>mnormt(v.1.5-5)</em>, <em>colorspace(v.1.3-2)</em>, <em>labeling(v.0.3)</em>, <em>stringi(v.1.1.6)</em>, <em>lazyeval(v.0.2.1)</em> and <em>munsell(v.0.4.3)</em></p>
 </div>
 <div id="references" class="section level5 unnumbered active">
 <h5>References</h5>
 <div id="refs" class="references">
 <div id="ref-rmarkdown">
-<p>Allaire, J., Cheng, J., Xie, Y., McPherson, J., Chang, W., Allen, J., … Arslan, R. (2017). <em>rmarkdown: Dynamic documents for R</em> (<em>R package version 1.5</em>). Retrieved from <a href="https://CRAN.R-project.org/package=rmarkdown" class="uri">https://CRAN.R-project.org/package=rmarkdown</a></p>
+<p>Allaire, J., Xie, Y., McPherson, J., Luraschi, J., Ushey, K., Atkins, A., … Chang, W. (2017). <em>rmarkdown: Dynamic documents for R</em> (<em>R package version 1.8</em>). Retrieved from <a href="https://CRAN.R-project.org/package=rmarkdown" class="uri">https://CRAN.R-project.org/package=rmarkdown</a></p>
 </div>
 <div id="ref-formr">
-<p>Arslan, R. (2014). <em>formr: Formr survey framework</em> (<em>R package version 0.6.11</em>).</p>
+<p>Arslan, R. (2014). <em>formr: Formr survey framework</em> (<em>R package version 0.7.1</em>).</p>
 </div>
 <div id="ref-pander">
-<p>Daróczi, G., &amp; Tsegelskyi, R. (2015). <em>pander: An R pandoc writer</em> (<em>R package version 0.6.0</em>). Retrieved from <a href="https://CRAN.R-project.org/package=pander" class="uri">https://CRAN.R-project.org/package=pander</a></p>
+<p>Daróczi, G., &amp; Tsegelskyi, R. (2017). <em>pander: An R ’pandoc’ writer</em> (<em>R package version 0.6.1</em>). Retrieved from <a href="https://CRAN.R-project.org/package=pander" class="uri">https://CRAN.R-project.org/package=pander</a></p>
 </div>
 <div id="ref-lubridate">
-<p>Grolemund, G., &amp; Wickham, H. (2011). Dates and times made easy with lubridate (<em>version 1.6.0</em>). <em>Journal of Statistical Software</em>, <em>40</em>, 1–25. Retrieved from <a href="http://www.jstatsoft.org/v40/i03/" class="uri">http://www.jstatsoft.org/v40/i03/</a></p>
+<p>Grolemund, G., &amp; Wickham, H. (2011). Dates and times made easy with lubridate (<em>version 1.7.1</em>). <em>Journal of Statistical Software</em>, <em>40</em>, 1–25. Retrieved from <a href="http://www.jstatsoft.org/v40/i03/" class="uri">http://www.jstatsoft.org/v40/i03/</a></p>
 </div>
 <div id="ref-R">
-<p>R Core Team. (2016). <em>R: A language and environment for statistical computing</em> (<em>version 3.3.2</em>). Vienna, Austria: R Foundation for Statistical Computing. Retrieved from <a href="https://www.R-project.org/" class="uri">https://www.R-project.org/</a></p>
+<p>R Core Team. (2017). <em>R: A language and environment for statistical computing</em> (<em>version 3.4.3</em>). Vienna, Austria: R Foundation for Statistical Computing. Retrieved from <a href="https://www.R-project.org/" class="uri">https://www.R-project.org/</a></p>
 </div>
 <div id="ref-broom">
-<p>Robinson, D. (2017). <em>broom: Convert statistical analysis objects into tidy data frames</em> (<em>R package version 0.4.2</em>). Retrieved from <a href="https://CRAN.R-project.org/package=broom" class="uri">https://CRAN.R-project.org/package=broom</a></p>
+<p>Robinson, D. (2017). <em>broom: Convert statistical analysis objects into tidy data frames</em> (<em>R package version 0.4.3</em>). Retrieved from <a href="https://CRAN.R-project.org/package=broom" class="uri">https://CRAN.R-project.org/package=broom</a></p>
 </div>
 <div id="ref-packrat">
 <p>Ushey, K., McPherson, J., Cheng, J., Atkins, A., &amp; Allaire, J. (2016). <em>packrat: A dependency management system for projects and their R package dependencies</em> (<em>R package version 0.4.8-1</em>). Retrieved from <a href="https://CRAN.R-project.org/package=packrat" class="uri">https://CRAN.R-project.org/package=packrat</a></p>
@@ -331,22 +332,22 @@ $(document).ready(function () {
 <p>Wickham, H. (2009). <em>ggplot2: Elegant graphics for data analysis</em> (<em>version 2.2.1</em>). Springer-Verlag New York. Retrieved from <a href="http://ggplot2.org" class="uri">http://ggplot2.org</a></p>
 </div>
 <div id="ref-stringr">
-<p>Wickham, H. (2017a). <em>stringr: Simple, consistent wrappers for common string operations</em> (<em>R package version 1.2.0</em>). Retrieved from <a href="https://CRAN.R-project.org/package=stringr" class="uri">https://CRAN.R-project.org/package=stringr</a></p>
-</div>
-<div id="ref-tidyr">
-<p>Wickham, H. (2017b). <em>tidyr: Easily tidy data with ’spread()’ and ’gather()’ functions</em> (<em>R package version 0.6.2</em>). Retrieved from <a href="https://CRAN.R-project.org/package=tidyr" class="uri">https://CRAN.R-project.org/package=tidyr</a></p>
+<p>Wickham, H. (2017). <em>stringr: Simple, consistent wrappers for common string operations</em> (<em>R package version 1.2.0</em>). Retrieved from <a href="https://CRAN.R-project.org/package=stringr" class="uri">https://CRAN.R-project.org/package=stringr</a></p>
 </div>
 <div id="ref-devtools">
-<p>Wickham, H., &amp; Chang, W. (2017). <em>devtools: Tools to make developing R packages easier</em> (<em>R package version 1.13.1</em>). Retrieved from <a href="https://CRAN.R-project.org/package=devtools" class="uri">https://CRAN.R-project.org/package=devtools</a></p>
+<p>Wickham, H., &amp; Chang, W. (2017). <em>devtools: Tools to make developing R packages easier</em> (<em>R package version 1.13.4</em>). Retrieved from <a href="https://CRAN.R-project.org/package=devtools" class="uri">https://CRAN.R-project.org/package=devtools</a></p>
+</div>
+<div id="ref-tidyr">
+<p>Wickham, H., &amp; Henry, L. (2017). <em>tidyr: Easily tidy data with ’spread()’ and ’gather()’ functions</em> (<em>R package version 0.7.2</em>). Retrieved from <a href="https://CRAN.R-project.org/package=tidyr" class="uri">https://CRAN.R-project.org/package=tidyr</a></p>
 </div>
 <div id="ref-dplyr">
-<p>Wickham, H., &amp; Francois, R. (2016). <em>dplyr: A grammar of data manipulation</em> (<em>R package version 0.5.0</em>). Retrieved from <a href="https://CRAN.R-project.org/package=dplyr" class="uri">https://CRAN.R-project.org/package=dplyr</a></p>
+<p>Wickham, H., Francois, R., Henry, L., &amp; Müller, K. (2017). <em>dplyr: A grammar of data manipulation</em> (<em>R package version 0.7.4</em>). Retrieved from <a href="https://CRAN.R-project.org/package=dplyr" class="uri">https://CRAN.R-project.org/package=dplyr</a></p>
 </div>
 <div id="ref-knitr">
-<p>Xie, Y. (2016). <em>knitr: A general-purpose package for dynamic report generation in R</em> (<em>R package version 1.15.1</em>). Retrieved from <a href="http://yihui.name/knitr/" class="uri">http://yihui.name/knitr/</a></p>
+<p>Xie, Y. (2017a). <em>knitr: A general-purpose package for dynamic report generation in R</em> (<em>R package version 1.18</em>). Retrieved from <a href="https://yihui.name/knitr/" class="uri">https://yihui.name/knitr/</a></p>
 </div>
 <div id="ref-formatR">
-<p>Xie, Y. (2017). <em>formatR: Format R code automatically</em> (<em>R package version 1.5</em>). Retrieved from <a href="https://CRAN.R-project.org/package=formatR" class="uri">https://CRAN.R-project.org/package=formatR</a></p>
+<p>Xie, Y. (2017b). <em>formatR: Format R code automatically</em> (<em>R package version 1.5</em>). Retrieved from <a href="https://CRAN.R-project.org/package=formatR" class="uri">https://CRAN.R-project.org/package=formatR</a></p>
 </div>
 </div>
 </div>

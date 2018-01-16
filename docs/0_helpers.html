@@ -21,7 +21,6 @@
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <script src="site_libs/navigation-1.1/codefolding.js"></script>
-<script src="site_libs/navigation-1.1/FileSaver.min.js"></script>
 <script src="site_libs/navigation-1.1/sourceembed.js"></script>
 <link href="site_libs/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet" />
 
@@ -302,18 +301,14 @@ $(document).ready(function () {
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(stringr)</code></pre></div>
 <p>extractor functions for models</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(broom)</code></pre></div>
-<p>marginal effects plots for regressions</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(effects)</code></pre></div>
 <p>grammar of graphics plots</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggplot2)</code></pre></div>
 <p>tidyverse: transform data wide to long</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyr)</code></pre></div>
-<p>svg graphs</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(svglite);</code></pre></div>
 <p>tidyverse-style data wrangling. has a lot of naming conflicts, so always load last</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(dplyr)</code></pre></div>
 <p>some packages may be needed without being loaded</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fool_packrat =<span class="st"> </span>function() {
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fool_packrat =<span class="st"> </span><span class="cf">function</span>() {
     <span class="co"># needed to install formr package</span>
     <span class="kw">library</span>(devtools)
     <span class="co"># needed to actually run rmarkdown in RStudio, but for some reason not in its dependencies</span>
@@ -323,19 +318,19 @@ $(document).ready(function () {
 <div id="spin-r-files" class="section level2">
 <h2>Spin R files</h2>
 <p>R scripts can be documented in markdown using Roxygen comments, as demonstrated here This function turns all R files (that don’t have an Rmd file of the same name and that don’t start with an underscore _) into HTML pages</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">spin_R_files_to_site_html =<span class="st"> </span>function() {
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">spin_R_files_to_site_html =<span class="st"> </span><span class="cf">function</span>() {
     <span class="kw">library</span>(knitr)
     all_Rs =<span class="st"> </span><span class="kw">c</span>(<span class="kw">list.files</span>(<span class="dt">pattern =</span> <span class="st">&quot;^[^_].+</span><span class="ch">\\</span><span class="st">.R$&quot;</span>), <span class="st">&quot;.Rprofile&quot;</span>)
     component_Rmds =<span class="st"> </span><span class="kw">list.files</span>(<span class="dt">pattern =</span> <span class="st">&quot;^_.+</span><span class="ch">\\</span><span class="st">.Rmd$&quot;</span>)
     temporary_Rmds =<span class="st"> </span><span class="kw">c</span>()
-    for (i in <span class="kw">seq_along</span>(all_Rs)) {
-        if(all_Rs[i] ==<span class="st"> &quot;.Rprofile&quot;</span>) {
+    <span class="cf">for</span> (i <span class="cf">in</span> <span class="kw">seq_along</span>(all_Rs)) {
+        <span class="cf">if</span>(all_Rs[i] <span class="op">==</span><span class="st"> &quot;.Rprofile&quot;</span>) {
             Rmd_file =<span class="st"> &quot;.Rprofile.Rmd&quot;</span>
-        } else {
+        } <span class="cf">else</span> {
             Rmd_file =<span class="st"> </span><span class="kw">paste0</span>(all_Rs[i], <span class="st">&quot;md&quot;</span>)
         }
-        if (!<span class="kw">file.exists</span>(Rmd_file)) {
-            next_document =<span class="st"> </span><span class="kw">length</span>(temporary_Rmds) +<span class="st"> </span><span class="dv">1</span>
+        <span class="cf">if</span> (<span class="op">!</span><span class="kw">file.exists</span>(Rmd_file)) {
+            next_document =<span class="st"> </span><span class="kw">length</span>(temporary_Rmds) <span class="op">+</span><span class="st"> </span><span class="dv">1</span>
             temporary_Rmds[next_document] =<span class="st"> </span><span class="kw">spin</span>(all_Rs[i], <span class="dt">knit =</span> <span class="ot">FALSE</span>, <span class="dt">envir =</span> <span class="kw">new.env</span>(), <span class="dt">format =</span> <span class="st">&quot;Rmd&quot;</span>)
             prepended_yaml =<span class="st"> </span><span class="kw">paste0</span>(<span class="kw">c</span>(<span class="st">&quot;---</span>
 <span class="st">output:</span>
@@ -348,21 +343,20 @@ $(document).ready(function () {
         }
     }
     components_and_scripts =<span class="st"> </span><span class="kw">c</span>(temporary_Rmds, component_Rmds)
-    for (i in <span class="kw">seq_along</span>(components_and_scripts)) {
-        opts_chunk$<span class="kw">set</span>(<span class="dt">eval =</span> <span class="ot">FALSE</span>, <span class="dt">cache =</span> <span class="ot">FALSE</span>)
+    <span class="cf">for</span> (i <span class="cf">in</span> <span class="kw">seq_along</span>(components_and_scripts)) {
+        opts_chunk<span class="op">$</span><span class="kw">set</span>(<span class="dt">eval =</span> <span class="ot">FALSE</span>, <span class="dt">cache =</span> <span class="ot">FALSE</span>)
         <span class="co"># if we call render_site on the .R file directly it adds a header I don&#39;t like</span>
-        rmarkdown::<span class="kw">render_site</span>(components_and_scripts[i], <span class="dt">quiet =</span> <span class="ot">TRUE</span>)
+        rmarkdown<span class="op">::</span><span class="kw">render_site</span>(components_and_scripts[i], <span class="dt">quiet =</span> <span class="ot">TRUE</span>)
     }
-    opts_chunk$<span class="kw">set</span>(<span class="dt">eval =</span> <span class="ot">TRUE</span>, <span class="dt">cache =</span> <span class="ot">TRUE</span>)
+    opts_chunk<span class="op">$</span><span class="kw">set</span>(<span class="dt">eval =</span> <span class="ot">TRUE</span>, <span class="dt">cache =</span> <span class="ot">TRUE</span>)
     <span class="kw">unlink</span>(temporary_Rmds)
 }</code></pre></div>
 </div>
 <div id="output-options" class="section level2">
 <h2>Output options</h2>
 <p>use pander to pretty-print objects (if possible)</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">opts_chunk$<span class="kw">set</span>(
-    <span class="dt">render =</span> pander_handler,
-    <span class="dt">dev =</span> <span class="st">&quot;svglite&quot;</span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">opts_chunk<span class="op">$</span><span class="kw">set</span>(
+    <span class="dt">render =</span> pander_handler
     )</code></pre></div>
 <p>don’t split tables, scroll horizontally</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">panderOptions</span>(<span class="st">&quot;table.split.table&quot;</span>, <span class="ot">Inf</span>)</code></pre></div>
@@ -370,13 +364,21 @@ $(document).ready(function () {
 <div id="knitr-components" class="section level2">
 <h2>Knitr components</h2>
 <p>summarise regression using a “knitr component”</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">regression_summary =<span class="st"> </span>function(model, <span class="dt">indent =</span> <span class="st">&quot;##&quot;</span>) {
-    formr::<span class="kw">asis_knit_child</span>(<span class="st">&quot;_regression_summary.Rmd&quot;</span>)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">regression_summary =<span class="st"> </span><span class="cf">function</span>(model, <span class="dt">indent =</span> <span class="st">&quot;##&quot;</span>) {
+    model_name =<span class="st"> </span><span class="kw">deparse</span>(<span class="kw">substitute</span>(model_name))
+    old_opt =<span class="st"> </span><span class="kw">options</span>(<span class="st">&#39;knitr.duplicate.label&#39;</span>)<span class="op">$</span>knitr.duplicate.label
+    <span class="kw">options</span>(<span class="dt">knitr.duplicate.label =</span> <span class="st">&#39;allow&#39;</span>)
+    <span class="kw">on.exit</span>(<span class="kw">options</span>(<span class="dt">knitr.duplicate.label =</span> old_opt))
+    options =<span class="st"> </span><span class="kw">list</span>(
+        <span class="dt">fig.path =</span> <span class="kw">paste0</span>(knitr<span class="op">::</span>opts_chunk<span class="op">$</span><span class="kw">get</span>(<span class="st">&quot;fig.path&quot;</span>), model_name, <span class="st">&quot;_&quot;</span>),
+        <span class="dt">cache.path =</span> <span class="kw">paste0</span>(knitr<span class="op">::</span>opts_chunk<span class="op">$</span><span class="kw">get</span>(<span class="st">&quot;cache.path&quot;</span>), model_name, <span class="st">&quot;_&quot;</span>)
+    )
+    formr<span class="op">::</span><span class="kw">asis_knit_child</span>(<span class="st">&quot;_regression_summary.Rmd&quot;</span>, <span class="dt">options =</span> options)
 }</code></pre></div>
 </div>
 </div>
 
-<div id="rmd-source-code">LS0tCm91dHB1dDoKICBodG1sX2RvY3VtZW50OgogICAgY29kZV9mb2xkaW5nOiAnc2hvdycKLS0tCgoKIyBIZWxwZXIgZnVuY3Rpb25zIHVzZWQgdGhyb3VnaG91dCB7LnRhYnNldCAudGFic2V0LXN0aWNreX0KZG9jdW1lbnRhdGlvbiBvbiB0aGUgZnVuY3Rpb25zIGlzIGludGVyc3BlcnNlZCB0aHJvdWdoIGNvZGUgY29tbWVudHMKCiMjIHNldCBzb21lIG9wdGlvbnMKZG9udCBzaG93IG1lc3NhZ2VzIHdoZW4gbG9hZGluZyBsaWJyYXJpZXMKCmBgYHtyIH0KIyBsaWJyYXJ5ID0gZnVuY3Rpb24oLi4uKSBzdXBwcmVzc01lc3NhZ2VzKGJhc2U6OmxpYnJhcnkoLi4uKSkKYGBgCgpuZXZlciBzZXQgc3RyaW5ncyBhcyBmYWN0b3JzIGF1dG9tYXRpY2FsbHkgKGdvb2dsZSBmb3IgcmVhc29uIHdoeSkKCmBgYHtyIH0Kb3B0aW9ucyhzdHJpbmdzQXNGYWN0b3JzID0gRkFMU0UpCmBgYAoKc2hvdyBmb3VyIHNpZ25pZmljYW50IGRpZ2l0cyB0b3BzCgpgYGB7ciB9Cm9wdGlvbnMoZGlnaXRzID0gNCkKYGBgCgp0ZW5kIG5vdCB0byBzaG93IHNjaWVudGlmaWMgbm90YXRpb24sIGJlY2F1c2Ugd2UncmUganVzdCBwc3ljaG9sb2dpc3RzCgpgYGB7ciB9Cm9wdGlvbnMoc2NpcGVuID0gNykKYGBgCgptYWtlIG91dHB1dCBhIGJpdCB3aWRlcgoKYGBge3IgfQpvcHRpb25zKHdpZHRoID0gMTEwKQpgYGAKCnNldCBhIHNlZWQgdG8gbWFrZSBhbmFseXNlcyBkZXBlbmRpbmcgb24gcmFuZG9tIG51bWJlciBnZW5lcmF0aW9uIHJlcHJvZHVjaWJsZQoKYGBge3IgfQpzZXQuc2VlZCgxNzEwKSAjIGlmIHlvdSB1c2UgeW91ciBzaWduaWZpY2FudCBvdGhlcidzIGJpcnRoZGF5IG1ha2Ugc3VyZSB5b3Ugc3RheSB0b2dldGhlciBmb3IgdGhlIHNha2Ugb2YgcmVwcm9kdWNpYmlsaXR5CmBgYAoKIyMgTG9hZCBwYWNrYWdlcwpnZW5lcmF0ZSB0aGUgc2l0ZQoKYGBge3IgfQpsaWJyYXJ5KHJtYXJrZG93bikKYGBgCgpzZXQgb3B0aW9ucyBmb3IgY2h1bmtzCgpgYGB7ciB9CmxpYnJhcnkoa25pdHIpCmBgYAoKbXkgZm9ybXIgdXRpbGl0eSBwYWNrYWdlIHRvIGdlbmVyYXRlIGUuZy4gdGhlIGJpYmxpb2dyYXBoeQoKYGBge3IgfQpsaWJyYXJ5KGZvcm1yKQpgYGAKCnByZXR0eS1wcmludGVkIG91dHB1dAoKYGBge3IgfQpsaWJyYXJ5KHBhbmRlcikKYGBgCgp0aWR5dmVyc2UgZGF0ZSB0aW1lcwoKYGBge3IgfQpsaWJyYXJ5KGx1YnJpZGF0ZSkKYGBgCgp0aWR5dmVyc2Ugc3RyaW5ncwoKYGBge3IgfQpsaWJyYXJ5KHN0cmluZ3IpCmBgYAoKZXh0cmFjdG9yIGZ1bmN0aW9ucyBmb3IgbW9kZWxzCgpgYGB7ciB9CmxpYnJhcnkoYnJvb20pCmBgYAoKbWFyZ2luYWwgZWZmZWN0cyBwbG90cyBmb3IgcmVncmVzc2lvbnMKCmBgYHtyIH0KbGlicmFyeShlZmZlY3RzKQpgYGAKCmdyYW1tYXIgb2YgZ3JhcGhpY3MgcGxvdHMKCmBgYHtyIH0KbGlicmFyeShnZ3Bsb3QyKQpgYGAKCnRpZHl2ZXJzZTogdHJhbnNmb3JtIGRhdGEgd2lkZSB0byBsb25nCgpgYGB7ciB9CmxpYnJhcnkodGlkeXIpCmBgYAoKc3ZnIGdyYXBocwoKYGBge3IgfQpsaWJyYXJ5KHN2Z2xpdGUpOwpgYGAKCnRpZHl2ZXJzZS1zdHlsZSBkYXRhIHdyYW5nbGluZy4gaGFzIGEgbG90IG9mIG5hbWluZyBjb25mbGljdHMsIHNvIGFsd2F5cyBsb2FkIGxhc3QKCmBgYHtyIH0KbGlicmFyeShkcGx5cikKYGBgCgpzb21lIHBhY2thZ2VzIG1heSBiZSBuZWVkZWQgd2l0aG91dCBiZWluZyBsb2FkZWQKCmBgYHtyIH0KZm9vbF9wYWNrcmF0ID0gZnVuY3Rpb24oKSB7CgkjIG5lZWRlZCB0byBpbnN0YWxsIGZvcm1yIHBhY2thZ2UKCWxpYnJhcnkoZGV2dG9vbHMpCgkjIG5lZWRlZCB0byBhY3R1YWxseSBydW4gcm1hcmtkb3duIGluIFJTdHVkaW8sIGJ1dCBmb3Igc29tZSByZWFzb24gbm90IGluIGl0cyBkZXBlbmRlbmNpZXMKCWxpYnJhcnkoZm9ybWF0UikKfQpgYGAKCiMjIFNwaW4gUiBmaWxlcwpSIHNjcmlwdHMgY2FuIGJlIGRvY3VtZW50ZWQgaW4gbWFya2Rvd24gdXNpbmcgUm94eWdlbiBjb21tZW50cywgYXMgZGVtb25zdHJhdGVkIGhlcmUKVGhpcyBmdW5jdGlvbiB0dXJucyBhbGwgUiBmaWxlcyAodGhhdCBkb24ndCBoYXZlIGFuIFJtZCBmaWxlIG9mIHRoZSBzYW1lIG5hbWUgYW5kIHRoYXQgZG9uJ3Qgc3RhcnQgd2l0aCBhbiB1bmRlcnNjb3JlIF8pIGludG8gSFRNTCBwYWdlcwoKYGBge3IgfQpzcGluX1JfZmlsZXNfdG9fc2l0ZV9odG1sID0gZnVuY3Rpb24oKSB7CglsaWJyYXJ5KGtuaXRyKQoJYWxsX1JzID0gYyhsaXN0LmZpbGVzKHBhdHRlcm4gPSAiXlteX10uK1xcLlIkIiksICIuUnByb2ZpbGUiKQoJY29tcG9uZW50X1JtZHMgPSBsaXN0LmZpbGVzKHBhdHRlcm4gPSAiXl8uK1xcLlJtZCQiKQoJdGVtcG9yYXJ5X1JtZHMgPSBjKCkKCWZvciAoaSBpbiBzZXFfYWxvbmcoYWxsX1JzKSkgewoJCWlmKGFsbF9Sc1tpXSA9PSAiLlJwcm9maWxlIikgewoJCQlSbWRfZmlsZSA9ICIuUnByb2ZpbGUuUm1kIgoJCX0gZWxzZSB7CgkJCVJtZF9maWxlID0gcGFzdGUwKGFsbF9Sc1tpXSwgIm1kIikKCQl9CgkJaWYgKCFmaWxlLmV4aXN0cyhSbWRfZmlsZSkpIHsKCQkJbmV4dF9kb2N1bWVudCA9IGxlbmd0aCh0ZW1wb3JhcnlfUm1kcykgKyAxCgkJCXRlbXBvcmFyeV9SbWRzW25leHRfZG9jdW1lbnRdID0gc3BpbihhbGxfUnNbaV0sIGtuaXQgPSBGQUxTRSwgZW52aXIgPSBuZXcuZW52KCksIGZvcm1hdCA9ICJSbWQiKQoJCQlwcmVwZW5kZWRfeWFtbCA9IHBhc3RlMChjKCItLS0Kb3V0cHV0OgogIGh0bWxfZG9jdW1lbnQ6CiAgICBjb2RlX2ZvbGRpbmc6ICdzaG93JwotLS0KCiIsIHJlYWRMaW5lcyh0ZW1wb3JhcnlfUm1kc1tuZXh0X2RvY3VtZW50XSkpLCBjb2xsYXBzZSA9ICJcbiIpCgkJCWNhdChwcmVwZW5kZWRfeWFtbCwgZmlsZSA9IHRlbXBvcmFyeV9SbWRzW25leHRfZG9jdW1lbnRdKQoJCX0KCX0KCWNvbXBvbmVudHNfYW5kX3NjcmlwdHMgPSBjKHRlbXBvcmFyeV9SbWRzLCBjb21wb25lbnRfUm1kcykKCWZvciAoaSBpbiBzZXFfYWxvbmcoY29tcG9uZW50c19hbmRfc2NyaXB0cykpIHsKCQlvcHRzX2NodW5rJHNldChldmFsID0gRkFMU0UsIGNhY2hlID0gRkFMU0UpCgkJIyBpZiB3ZSBjYWxsIHJlbmRlcl9zaXRlIG9uIHRoZSAuUiBmaWxlIGRpcmVjdGx5IGl0IGFkZHMgYSBoZWFkZXIgSSBkb24ndCBsaWtlCgkJcm1hcmtkb3duOjpyZW5kZXJfc2l0ZShjb21wb25lbnRzX2FuZF9zY3JpcHRzW2ldLCBxdWlldCA9IFRSVUUpCgl9CglvcHRzX2NodW5rJHNldChldmFsID0gVFJVRSwgY2FjaGUgPSBUUlVFKQoJdW5saW5rKHRlbXBvcmFyeV9SbWRzKQp9CmBgYAoKIyMgT3V0cHV0IG9wdGlvbnMKdXNlIHBhbmRlciB0byBwcmV0dHktcHJpbnQgb2JqZWN0cyAoaWYgcG9zc2libGUpCgpgYGB7ciB9Cm9wdHNfY2h1bmskc2V0KAoJcmVuZGVyID0gcGFuZGVyX2hhbmRsZXIsCglkZXYgPSAic3ZnbGl0ZSIKCSkKYGBgCgpkb24ndCBzcGxpdCB0YWJsZXMsIHNjcm9sbCBob3Jpem9udGFsbHkKCmBgYHtyIH0KcGFuZGVyT3B0aW9ucygidGFibGUuc3BsaXQudGFibGUiLCBJbmYpCmBgYAoKIyMgS25pdHIgY29tcG9uZW50cwoKc3VtbWFyaXNlIHJlZ3Jlc3Npb24gdXNpbmcgYSAia25pdHIgY29tcG9uZW50IgoKYGBge3IgfQpyZWdyZXNzaW9uX3N1bW1hcnkgPSBmdW5jdGlvbihtb2RlbCwgaW5kZW50ID0gIiMjIikgewoJZm9ybXI6OmFzaXNfa25pdF9jaGlsZCgiX3JlZ3Jlc3Npb25fc3VtbWFyeS5SbWQiKQp9CmBgYAo=</div>
+<div id="rmd-source-code">LS0tCm91dHB1dDoKICBodG1sX2RvY3VtZW50OgogICAgY29kZV9mb2xkaW5nOiAnc2hvdycKLS0tCgoKIyBIZWxwZXIgZnVuY3Rpb25zIHVzZWQgdGhyb3VnaG91dCB7LnRhYnNldCAudGFic2V0LXN0aWNreX0KZG9jdW1lbnRhdGlvbiBvbiB0aGUgZnVuY3Rpb25zIGlzIGludGVyc3BlcnNlZCB0aHJvdWdoIGNvZGUgY29tbWVudHMKCiMjIHNldCBzb21lIG9wdGlvbnMKZG9udCBzaG93IG1lc3NhZ2VzIHdoZW4gbG9hZGluZyBsaWJyYXJpZXMKCmBgYHtyIH0KIyBsaWJyYXJ5ID0gZnVuY3Rpb24oLi4uKSBzdXBwcmVzc01lc3NhZ2VzKGJhc2U6OmxpYnJhcnkoLi4uKSkKYGBgCgpuZXZlciBzZXQgc3RyaW5ncyBhcyBmYWN0b3JzIGF1dG9tYXRpY2FsbHkgKGdvb2dsZSBmb3IgcmVhc29uIHdoeSkKCmBgYHtyIH0Kb3B0aW9ucyhzdHJpbmdzQXNGYWN0b3JzID0gRkFMU0UpCmBgYAoKc2hvdyBmb3VyIHNpZ25pZmljYW50IGRpZ2l0cyB0b3BzCgpgYGB7ciB9Cm9wdGlvbnMoZGlnaXRzID0gNCkKYGBgCgp0ZW5kIG5vdCB0byBzaG93IHNjaWVudGlmaWMgbm90YXRpb24sIGJlY2F1c2Ugd2UncmUganVzdCBwc3ljaG9sb2dpc3RzCgpgYGB7ciB9Cm9wdGlvbnMoc2NpcGVuID0gNykKYGBgCgptYWtlIG91dHB1dCBhIGJpdCB3aWRlcgoKYGBge3IgfQpvcHRpb25zKHdpZHRoID0gMTEwKQpgYGAKCnNldCBhIHNlZWQgdG8gbWFrZSBhbmFseXNlcyBkZXBlbmRpbmcgb24gcmFuZG9tIG51bWJlciBnZW5lcmF0aW9uIHJlcHJvZHVjaWJsZQoKYGBge3IgfQpzZXQuc2VlZCgxNzEwKSAjIGlmIHlvdSB1c2UgeW91ciBzaWduaWZpY2FudCBvdGhlcidzIGJpcnRoZGF5IG1ha2Ugc3VyZSB5b3Ugc3RheSB0b2dldGhlciBmb3IgdGhlIHNha2Ugb2YgcmVwcm9kdWNpYmlsaXR5CmBgYAoKIyMgTG9hZCBwYWNrYWdlcwpnZW5lcmF0ZSB0aGUgc2l0ZQoKYGBge3IgfQpsaWJyYXJ5KHJtYXJrZG93bikKYGBgCgpzZXQgb3B0aW9ucyBmb3IgY2h1bmtzCgpgYGB7ciB9CmxpYnJhcnkoa25pdHIpCmBgYAoKbXkgZm9ybXIgdXRpbGl0eSBwYWNrYWdlIHRvIGdlbmVyYXRlIGUuZy4gdGhlIGJpYmxpb2dyYXBoeQoKYGBge3IgfQpsaWJyYXJ5KGZvcm1yKQpgYGAKCnByZXR0eS1wcmludGVkIG91dHB1dAoKYGBge3IgfQpsaWJyYXJ5KHBhbmRlcikKYGBgCgp0aWR5dmVyc2UgZGF0ZSB0aW1lcwoKYGBge3IgfQpsaWJyYXJ5KGx1YnJpZGF0ZSkKYGBgCgp0aWR5dmVyc2Ugc3RyaW5ncwoKYGBge3IgfQpsaWJyYXJ5KHN0cmluZ3IpCmBgYAoKZXh0cmFjdG9yIGZ1bmN0aW9ucyBmb3IgbW9kZWxzCgpgYGB7ciB9CmxpYnJhcnkoYnJvb20pCmBgYAoKZ3JhbW1hciBvZiBncmFwaGljcyBwbG90cwoKYGBge3IgfQpsaWJyYXJ5KGdncGxvdDIpCmBgYAoKdGlkeXZlcnNlOiB0cmFuc2Zvcm0gZGF0YSB3aWRlIHRvIGxvbmcKCmBgYHtyIH0KbGlicmFyeSh0aWR5cikKYGBgCgp0aWR5dmVyc2Utc3R5bGUgZGF0YSB3cmFuZ2xpbmcuIGhhcyBhIGxvdCBvZiBuYW1pbmcgY29uZmxpY3RzLCBzbyBhbHdheXMgbG9hZCBsYXN0CgpgYGB7ciB9CmxpYnJhcnkoZHBseXIpCmBgYAoKc29tZSBwYWNrYWdlcyBtYXkgYmUgbmVlZGVkIHdpdGhvdXQgYmVpbmcgbG9hZGVkCgpgYGB7ciB9CmZvb2xfcGFja3JhdCA9IGZ1bmN0aW9uKCkgewoJIyBuZWVkZWQgdG8gaW5zdGFsbCBmb3JtciBwYWNrYWdlCglsaWJyYXJ5KGRldnRvb2xzKQoJIyBuZWVkZWQgdG8gYWN0dWFsbHkgcnVuIHJtYXJrZG93biBpbiBSU3R1ZGlvLCBidXQgZm9yIHNvbWUgcmVhc29uIG5vdCBpbiBpdHMgZGVwZW5kZW5jaWVzCglsaWJyYXJ5KGZvcm1hdFIpCn0KYGBgCgojIyBTcGluIFIgZmlsZXMKUiBzY3JpcHRzIGNhbiBiZSBkb2N1bWVudGVkIGluIG1hcmtkb3duIHVzaW5nIFJveHlnZW4gY29tbWVudHMsIGFzIGRlbW9uc3RyYXRlZCBoZXJlClRoaXMgZnVuY3Rpb24gdHVybnMgYWxsIFIgZmlsZXMgKHRoYXQgZG9uJ3QgaGF2ZSBhbiBSbWQgZmlsZSBvZiB0aGUgc2FtZSBuYW1lIGFuZCB0aGF0IGRvbid0IHN0YXJ0IHdpdGggYW4gdW5kZXJzY29yZSBfKSBpbnRvIEhUTUwgcGFnZXMKCmBgYHtyIH0Kc3Bpbl9SX2ZpbGVzX3RvX3NpdGVfaHRtbCA9IGZ1bmN0aW9uKCkgewoJbGlicmFyeShrbml0cikKCWFsbF9ScyA9IGMobGlzdC5maWxlcyhwYXR0ZXJuID0gIl5bXl9dLitcXC5SJCIpLCAiLlJwcm9maWxlIikKCWNvbXBvbmVudF9SbWRzID0gbGlzdC5maWxlcyhwYXR0ZXJuID0gIl5fLitcXC5SbWQkIikKCXRlbXBvcmFyeV9SbWRzID0gYygpCglmb3IgKGkgaW4gc2VxX2Fsb25nKGFsbF9ScykpIHsKCQlpZihhbGxfUnNbaV0gPT0gIi5ScHJvZmlsZSIpIHsKCQkJUm1kX2ZpbGUgPSAiLlJwcm9maWxlLlJtZCIKCQl9IGVsc2UgewoJCQlSbWRfZmlsZSA9IHBhc3RlMChhbGxfUnNbaV0sICJtZCIpCgkJfQoJCWlmICghZmlsZS5leGlzdHMoUm1kX2ZpbGUpKSB7CgkJCW5leHRfZG9jdW1lbnQgPSBsZW5ndGgodGVtcG9yYXJ5X1JtZHMpICsgMQoJCQl0ZW1wb3JhcnlfUm1kc1tuZXh0X2RvY3VtZW50XSA9IHNwaW4oYWxsX1JzW2ldLCBrbml0ID0gRkFMU0UsIGVudmlyID0gbmV3LmVudigpLCBmb3JtYXQgPSAiUm1kIikKCQkJcHJlcGVuZGVkX3lhbWwgPSBwYXN0ZTAoYygiLS0tCm91dHB1dDoKICBodG1sX2RvY3VtZW50OgogICAgY29kZV9mb2xkaW5nOiAnc2hvdycKLS0tCgoiLCByZWFkTGluZXModGVtcG9yYXJ5X1JtZHNbbmV4dF9kb2N1bWVudF0pKSwgY29sbGFwc2UgPSAiXG4iKQoJCQljYXQocHJlcGVuZGVkX3lhbWwsIGZpbGUgPSB0ZW1wb3JhcnlfUm1kc1tuZXh0X2RvY3VtZW50XSkKCQl9Cgl9Cgljb21wb25lbnRzX2FuZF9zY3JpcHRzID0gYyh0ZW1wb3JhcnlfUm1kcywgY29tcG9uZW50X1JtZHMpCglmb3IgKGkgaW4gc2VxX2Fsb25nKGNvbXBvbmVudHNfYW5kX3NjcmlwdHMpKSB7CgkJb3B0c19jaHVuayRzZXQoZXZhbCA9IEZBTFNFLCBjYWNoZSA9IEZBTFNFKQoJCSMgaWYgd2UgY2FsbCByZW5kZXJfc2l0ZSBvbiB0aGUgLlIgZmlsZSBkaXJlY3RseSBpdCBhZGRzIGEgaGVhZGVyIEkgZG9uJ3QgbGlrZQoJCXJtYXJrZG93bjo6cmVuZGVyX3NpdGUoY29tcG9uZW50c19hbmRfc2NyaXB0c1tpXSwgcXVpZXQgPSBUUlVFKQoJfQoJb3B0c19jaHVuayRzZXQoZXZhbCA9IFRSVUUsIGNhY2hlID0gVFJVRSkKCXVubGluayh0ZW1wb3JhcnlfUm1kcykKfQpgYGAKCiMjIE91dHB1dCBvcHRpb25zCnVzZSBwYW5kZXIgdG8gcHJldHR5LXByaW50IG9iamVjdHMgKGlmIHBvc3NpYmxlKQoKYGBge3IgfQpvcHRzX2NodW5rJHNldCgKCXJlbmRlciA9IHBhbmRlcl9oYW5kbGVyCgkpCmBgYAoKZG9uJ3Qgc3BsaXQgdGFibGVzLCBzY3JvbGwgaG9yaXpvbnRhbGx5CgpgYGB7ciB9CnBhbmRlck9wdGlvbnMoInRhYmxlLnNwbGl0LnRhYmxlIiwgSW5mKQpgYGAKCiMjIEtuaXRyIGNvbXBvbmVudHMKCnN1bW1hcmlzZSByZWdyZXNzaW9uIHVzaW5nIGEgImtuaXRyIGNvbXBvbmVudCIKCmBgYHtyIH0KcmVncmVzc2lvbl9zdW1tYXJ5ID0gZnVuY3Rpb24obW9kZWwsIGluZGVudCA9ICIjIyIpIHsKCW1vZGVsX25hbWUgPSBkZXBhcnNlKHN1YnN0aXR1dGUobW9kZWxfbmFtZSkpCglvbGRfb3B0ID0gb3B0aW9ucygna25pdHIuZHVwbGljYXRlLmxhYmVsJykka25pdHIuZHVwbGljYXRlLmxhYmVsCglvcHRpb25zKGtuaXRyLmR1cGxpY2F0ZS5sYWJlbCA9ICdhbGxvdycpCglvbi5leGl0KG9wdGlvbnMoa25pdHIuZHVwbGljYXRlLmxhYmVsID0gb2xkX29wdCkpCglvcHRpb25zID0gbGlzdCgKCQlmaWcucGF0aCA9IHBhc3RlMChrbml0cjo6b3B0c19jaHVuayRnZXQoImZpZy5wYXRoIiksIG1vZGVsX25hbWUsICJfIiksCgkJY2FjaGUucGF0aCA9IHBhc3RlMChrbml0cjo6b3B0c19jaHVuayRnZXQoImNhY2hlLnBhdGgiKSwgbW9kZWxfbmFtZSwgIl8iKQoJKQoJZm9ybXI6OmFzaXNfa25pdF9jaGlsZCgiX3JlZ3Jlc3Npb25fc3VtbWFyeS5SbWQiLCBvcHRpb25zID0gb3B0aW9ucykKfQpgYGAK</div>
 
 
 

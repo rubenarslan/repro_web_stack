@@ -21,7 +21,6 @@
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <script src="site_libs/navigation-1.1/codefolding.js"></script>
-<script src="site_libs/navigation-1.1/FileSaver.min.js"></script>
 <script src="site_libs/navigation-1.1/sourceembed.js"></script>
 <link href="site_libs/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet" />
 
@@ -274,7 +273,7 @@ $(document).ready(function () {
 <div id="wrangle-wrangle" class="section level2">
 <h2>Wrangle wrangle</h2>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(<span class="st">&quot;msleep&quot;</span>)
-msleep %&gt;%<span class="st"> </span>
+msleep <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">    </span><span class="kw">mutate</span>(<span class="dt">eats =</span> <span class="kw">factor</span>(<span class="kw">recode</span>(vore, <span class="st">&quot;carni&quot;</span> =<span class="st"> &quot;meat&quot;</span>, <span class="st">&quot;omni&quot;</span> =<span class="st"> &quot;everything&quot;</span>, <span class="st">&quot;herbi&quot;</span> =<span class="st"> &quot;plants&quot;</span>, <span class="st">&quot;insecti&quot;</span> =<span class="st"> &quot;insects&quot;</span>), <span class="kw">c</span>(<span class="st">&quot;everything&quot;</span>,<span class="st">&quot;plants&quot;</span>, <span class="st">&quot;insects&quot;</span>, <span class="st">&quot;meat&quot;</span>))) -&gt;
 msleep</code></pre></div>
 </div>
