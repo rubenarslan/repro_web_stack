@@ -85,8 +85,7 @@ output:
 #' ## Output options
 #' use pander to pretty-print objects (if possible)
 opts_chunk$set(
-	render = pander_handler,
-	dev = "svglite"
+	render = pander_handler
 	)
 
 #' don't split tables, scroll horizontally

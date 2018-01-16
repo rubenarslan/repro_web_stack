@@ -2,9 +2,9 @@
 .Rhistory
 .RData
 .Ruserdata
-_site
 packrat/lib*/
 packrat/src/
 *.rds
 *.rdata
 *_cache/
+.passwords.R
