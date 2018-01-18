@@ -1,27 +1,38 @@
-name: "reproducible-website-stack"
-output_dir: "docs"
+name: reproducible-website-stack
+output_dir: docs
 navbar:
-  title: "Reproducible website stack"
+  title: Reproducible website stack
   left:
-    - text: "Overview"
-      href: index.html
-    - text: "Data wrangling"
-      href: 1_wrangle_data.html
-    - text: "Descriptives"
-      href: 2_descriptives.html
-    - text: "Analyses"
-      href: 3_analyses.html
+  - text: Overview
+    href: index.html
+  - text: Data wrangling
+    href: 1_wrangle_data.html
+  - text: Descriptives
+    href: 2_descriptives.html
+  - text: Analyses
+    href: 3_analyses.html
   right:
-    - text: ""
-      icon: fa-github
-      href: https://github.com/rubenarslan/repro_web_stack
+  - text: ''
+    icon: fa-github
+    href: https://github.com/rubenarslan/repro_web_stack
 output:
   html_document:
-    self_contained: false
     theme: paper
-    code_folding: "hide"
-    df_print: "tibble"
-    code_download: true
-    highlight: "zenburn"
+    code_folding: hide
+    df_print: tibble
+    code_download: yes
+    highlight: zenburn
     css: styles.css
-exclude: ["packrat", "*.rda", "*.pdf", "*.dta", "*.csv", "geo", "item_tables", "*.csl", "*.bibtex"]
+    lib_dir: site_libs
+    self_contained: no
+exclude:
+- packrat
+- '*.rda'
+- '*.pdf'
+- '*.dta'
+- '*.csv'
+- geo
+- item_tables
+- '*.csl'
+- '*.bibtex'
+
